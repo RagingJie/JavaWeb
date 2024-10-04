@@ -1,3 +1,7 @@
+server:
+  port: 6686
+
 spring:
   application:
     name: easyExcel
+
