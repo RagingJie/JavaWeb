@@ -1,6 +1,7 @@
 package com.naruto.easyexcel.controller;
 
 import com.alibaba.excel.EasyExcel;
+import com.naruto.easyexcel.common.AjaxResult;
 import com.naruto.easyexcel.pojo.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +32,31 @@ public class ExcelController {
      * @description 导出文件
      */
     @GetMapping("/download")
-    public String download(HttpServletResponse response, @RequestParam Integer index) {
+    public AjaxResult download(HttpServletResponse response, @RequestParam Integer index) {
         ArrayList<Order> list = new ArrayList<>();
+        // 填充数据
+        addData(list);
+        log.info("请求选项=> {}", index);
+
+        switch (index) {
+            case 1:
+                one(list);
+                log.info("《第一种》最简单的写出方式");
+                break;
+            default:
+                log.error("暂无此选项！");
+        }
+        return AjaxResult.success();
+    }
+
+    /**
+     * @param list 订单信息集合
+     * @return void
+     * @author Naruto
+     * @date 2024/10/5 1:22
+     * @description 填充数据
+     */
+    private void addData(ArrayList<Order> list) {
         Order order1 = new Order(1, "order001", "user001", BigDecimal.valueOf(15.6), 1, new Date(), new Date());
         Order order2 = new Order(2, "order002", "user002", BigDecimal.valueOf(156), 2, new Date(), new Date());
         Order order3 = new Order(3, "order003", "user003", BigDecimal.valueOf(12.68), 3, new Date(), new Date());
@@ -57,18 +81,6 @@ public class ExcelController {
         list.add(order10);
         list.add(order11);
         list.add(order12);
-
-        log.info("请求选项=> {}", index);
-
-        switch (index) {
-            case 1:
-                one(list);
-                log.info("《第一种》最简单的写出方式");
-                break;
-            default:
-                log.error("暂无此选项！");
-        }
-        return "SUCCESS";
     }
 
     private void one(ArrayList<Order> list) {
