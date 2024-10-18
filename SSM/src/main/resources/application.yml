@@ -1,0 +1,6 @@
+server:
+  port: 7762
+
+spring:
+  application:
+    name: ioc
