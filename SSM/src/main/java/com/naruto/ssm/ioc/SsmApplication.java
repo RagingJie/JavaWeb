@@ -1,5 +1,6 @@
 package com.naruto.ssm.ioc;
 
+import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
 import com.naruto.ssm.ioc.pojo.Dog;
@@ -10,9 +11,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
 import java.util.Map;
 
+@Import(CoreConstants.class)  // 直接往Spring的容器中注册某一个对象，只要是关于组件的注解，放在哪个层下面的类上都可以，只要能被Spring扫描到
 @Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
