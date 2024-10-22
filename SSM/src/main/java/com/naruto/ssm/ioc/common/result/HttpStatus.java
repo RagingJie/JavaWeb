@@ -1,4 +1,4 @@
-package com.naruto.ssm.common.result;
+package com.naruto.ssm.ioc.common.result;
 
 /**
  * @Author

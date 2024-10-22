@@ -1,4 +1,4 @@
-package com.naruto.ssm.common.util;
+package com.naruto.ssm.ioc.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
