@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
  * @Description:
  */
 @Repository
-
 public class User {
 }
