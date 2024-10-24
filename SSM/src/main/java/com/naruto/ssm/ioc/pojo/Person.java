@@ -10,7 +10,6 @@ import java.io.Serializable;
  * @Date 2024/10/18 10:21
  * @Description:
  */
-@NoArgsConstructor
 @AllArgsConstructor
 public class Person implements Serializable {
 
@@ -22,4 +21,8 @@ public class Person implements Serializable {
     private String address;
     // 身高
     private double height;
+
+    public Person() {
+        System.out.println("Person创建......");
+    }
 }

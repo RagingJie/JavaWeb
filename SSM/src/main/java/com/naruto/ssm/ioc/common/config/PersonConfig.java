@@ -3,6 +3,7 @@ package com.naruto.ssm.ioc.common.config;
 import com.naruto.ssm.ioc.pojo.Person;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 /**
  * @Author
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration  // 告诉Spring容器，这是一个配置类
 public class PersonConfig {
 
+    @Scope("singleton") // 默认值，单实例
     @Bean("person")
     public Person ha() {
         Person person = new Person(20, "哈哈", "山东潍坊111", 175.6);
@@ -24,6 +26,7 @@ public class PersonConfig {
         return person;
     }
 
+    @Scope("prototype")
     @Bean("personOne")
     public Person person1() {
         return new Person();

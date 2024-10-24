@@ -21,6 +21,45 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+    /*
+         @Scope 调整组件的作用域：
+         1、@Scope("prototype")：非单实例
+            容器启动的时候不会创建非单实例组件的对象
+            什么时候获取，什么时候创建
+         2、@Scope("singleton)：单实例
+            容器启动的时候会创建单实例组件的对象
+            容器启动完成之前就会创建好
+            @Lazy：懒加载    ==》单例模式下，可以继续调整为懒加载
+                容器启动完成之前不会创建懒加载组件的对象
+                什么时候获取，什么时候创建
+         3、@Scope("request")：同一个请求单实例
+         4、@Scope("session")：同一次会话单实例
+     */
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+
+        System.out.println("==========ioc容器创建完成==========");
+
+        Object bean1 = ioc.getBean("person");
+        System.out.println("bean1 = " + bean1.toString());
+        System.out.println("bean1 = " + bean1);
+
+        Object bean2 = ioc.getBean("person");
+        System.out.println("bean2 = " + bean2);
+
+        // 容器创建的时候（完成之前）就把所有的单实例对象创建完成
+        System.out.println(bean1 == bean2);
+
+        Object personOne1 = ioc.getBean("personOne");
+        System.out.println("personOne2 = " + personOne1);
+
+        Object personOne2 = ioc.getBean("personOne");
+        System.out.println("personOne2 = " + personOne2);
+
+        Object dog = ioc.getBean("dog");
+        System.out.println("dog = " + dog);
+    }
+
 
     /*
      * 默认：分层注解能起作用的前提是，这些组件必须在主程序所在的包及其子包结构下
@@ -32,7 +71,7 @@ public class SsmApplication {
      *  4、@Component 组件
      *
      */
-    public static void main(String[] args) {
+    public static void test03BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
 
         System.out.println("===============ioc==============");
