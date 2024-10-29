@@ -1,7 +1,10 @@
 package com.naruto.ssm.ioc.common.config;
 
+import com.naruto.ssm.ioc.common.condition.MacCondition;
+import com.naruto.ssm.ioc.common.condition.WindowsCondition;
 import com.naruto.ssm.ioc.pojo.Person;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
@@ -12,6 +15,20 @@ import org.springframework.context.annotation.Scope;
  */
 @Configuration  // 告诉Spring容器，这是一个配置类
 public class PersonConfig {
+
+    @Conditional(MacCondition.class)
+    @Bean("apple")
+    public Person apple() {
+        Person person = new Person(22, "苹果", "广东苹果", 180.8);
+        return person;
+    }
+
+    @Conditional(WindowsCondition.class)
+    @Bean("aHua")
+    public Person aHua() {
+        Person person = new Person(44, "阿花", "广东深圳", 166.6);
+        return person;
+    }
 
     @Scope("singleton") // 默认值，单实例
     @Bean("person")

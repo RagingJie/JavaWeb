@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.util.Map;
 
@@ -22,8 +23,25 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
-    // FactoryBean在容器中放的组件的类型，是接口中泛型指定的类型，组件的名字是 工厂自己
     public static void main(String[] args) {
+        // ioc容器
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+
+        Map<String, Person> beansOfType = ioc.getBeansOfType(Person.class);
+        System.out.println(beansOfType);
+
+//        String[] beanDefinitionNames = ioc.getBeanDefinitionNames();
+//        for (String beanDefinitionName : beanDefinitionNames) {
+//            System.out.println(beanDefinitionName);
+//        }
+
+        ConfigurableEnvironment environment = ioc.getEnvironment();
+        String os = environment.getProperty("OS");
+        System.out.println("系统=> "+os);
+    }
+
+    // FactoryBean在容器中放的组件的类型，是接口中泛型指定的类型，组件的名字是 工厂自己
+    public static void test05BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
 
         Car bean1 = ioc.getBean(Car.class);
@@ -35,7 +53,6 @@ public class SsmApplication {
         Map<String, Car> beansOfType = ioc.getBeansOfType(Car.class);
         System.out.println("beansOfType = " + beansOfType);
     }
-
 
     /*
          @Scope 调整组件的作用域：
