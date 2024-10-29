@@ -3,6 +3,7 @@ package com.naruto.ssm.ioc;
 import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
+import com.naruto.ssm.ioc.dao.Car;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
 import com.naruto.ssm.ioc.service.UserService;
@@ -21,6 +22,21 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+    // FactoryBean在容器中放的组件的类型，是接口中泛型指定的类型，组件的名字是 工厂自己
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+
+        Car bean1 = ioc.getBean(Car.class);
+        Car bean2 = ioc.getBean(Car.class);
+        System.out.println("bean1 = " + bean1);
+        System.out.println("bean2 = " + bean2);
+        System.out.println(bean1 == bean2);
+
+        Map<String, Car> beansOfType = ioc.getBeansOfType(Car.class);
+        System.out.println("beansOfType = " + beansOfType);
+    }
+
+
     /*
          @Scope 调整组件的作用域：
          1、@Scope("prototype")：非单实例
@@ -35,7 +51,7 @@ public class SsmApplication {
          3、@Scope("request")：同一个请求单实例
          4、@Scope("session")：同一次会话单实例
      */
-    public static void main(String[] args) {
+    public static void test04BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
 
         System.out.println("==========ioc容器创建完成==========");
@@ -59,7 +75,6 @@ public class SsmApplication {
         Object dog = ioc.getBean("dog");
         System.out.println("dog = " + dog);
     }
-
 
     /*
      * 默认：分层注解能起作用的前提是，这些组件必须在主程序所在的包及其子包结构下
