@@ -23,7 +23,26 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+    /*
+         测试自动注入
+     */
     public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+        System.out.println("ioc容器创建成功！！！");
+
+
+        UserController userController = ioc.getBean(UserController.class);
+        System.out.println("userController=> " + userController);
+    }
+
+    /**
+     * @param args
+     * @return void
+     * @author Naruto
+     * @date 2024/10/30 16:06
+     * @description 条件注册
+     */
+    public static void test06BeanAnnotation(String[] args) {
         // ioc容器
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
 

@@ -1,6 +1,7 @@
 package com.naruto.ssm.ioc.pojo;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
  * @Date 2024/10/18 10:21
  * @Description:
  */
+@Data
 @AllArgsConstructor
 public class Person implements Serializable {
 
