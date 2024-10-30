@@ -25,7 +25,7 @@ public class UserController {
     /*
         自动装配流程（先按照类型，在按照名称）
         1、按照类型，找到这个组件
-            1.0、只有且找到一个，直接注入，名字无所谓
+            1.0、只有且找到一个，直接注入，名字无所谓  ************************
             1.1、如果找到多个，再按照名称去找；变量名就是名字（新版）
                 1.1.1、如果找到，直接注入
                 1.1.2、如果找不到，报错
@@ -33,7 +33,7 @@ public class UserController {
     @Autowired  // 自动装配；原理：Spring调用容器.getBean
     UserService userService;
 
-    @Autowired
+    @Autowired // ioc容器中，存在多个同样类型的组件时，@Autowired引入后的变量名若ioc容器中找不到对应的组件，就会报错
     UserService abc;
 
     @Autowired

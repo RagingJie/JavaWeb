@@ -1,5 +1,9 @@
 package com.naruto.ssm.ioc.service;
 
+import com.naruto.ssm.ioc.pojo.Person;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 /**
@@ -7,6 +11,15 @@ import org.springframework.stereotype.Service;
  * @Date 2024/10/23 1:52
  * @Description:
  */
+@Data
 @Service
 public class UserService {
+
+//    @Qualifier("apple") // @Qualifier精确指定：如果容器中这样的组件存在多个，则使用@Qualifier精确指定组件名
+
+    // 个人理解，用@Qualifier时，通常是有@Primary存在
+
+    @Qualifier("lisi") // 精确指定：如果容器中这样的组件存在多个，且有默认组件@Primary。我们可以使用@Qualifier 切换别的组件
+    @Autowired
+    Person personOne;  // @Primary一旦存在，改属性名就不能实现组件切换了
 }

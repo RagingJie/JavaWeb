@@ -30,6 +30,17 @@ public class SsmApplication {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
+        UserService userService = ioc.getBean(UserService.class);
+        System.out.println("userService=> " + userService);
+    }
+
+    /*
+         测试自动注入
+     */
+    public static void test07BeanAnnotation(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+        System.out.println("ioc容器创建成功！！！");
+
 
         UserController userController = ioc.getBean(UserController.class);
         System.out.println("userController=> " + userController);

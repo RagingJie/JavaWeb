@@ -3,10 +3,7 @@ package com.naruto.ssm.ioc.common.config;
 import com.naruto.ssm.ioc.common.condition.MacCondition;
 import com.naruto.ssm.ioc.common.condition.WindowsCondition;
 import com.naruto.ssm.ioc.pojo.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 
 /**
  * @Author
@@ -24,6 +21,7 @@ public class PersonConfig {
         return person;
     }
 
+    @Primary  // 主组件  /  默认组件
     @Conditional(WindowsCondition.class)
     @Bean("aHua")
     public Person aHua() {
@@ -38,7 +36,7 @@ public class PersonConfig {
         return person;
     }
 
-    @Bean
+    @Bean("lisi")
     public Person person() {
         Person person = new Person(18, "阿叼", "山东潍坊", 182.5);
         return person;
