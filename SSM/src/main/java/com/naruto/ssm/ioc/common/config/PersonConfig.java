@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
  * @Date 2024/10/23 1:21
  * @Description:
  */
+//@Conditional(WindowsCondition.class)
 @Configuration  // 告诉Spring容器，这是一个配置类
 public class PersonConfig {
 

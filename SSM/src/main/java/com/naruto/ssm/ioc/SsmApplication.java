@@ -37,7 +37,13 @@ public class SsmApplication {
 
         ConfigurableEnvironment environment = ioc.getEnvironment();
         String os = environment.getProperty("OS");
-        System.out.println("系统=> "+os);
+        System.out.println("系统=> " + os);
+
+        Map<String, Person> beansOfType2 = ioc.getBeansOfType(Person.class);
+        System.out.println("person=> " + beansOfType2);
+
+        Map<String, Dog> beansOfType1 = ioc.getBeansOfType(Dog.class);
+        System.out.println("dogs=> " + beansOfType1);
     }
 
     // FactoryBean在容器中放的组件的类型，是接口中泛型指定的类型，组件的名字是 工厂自己
