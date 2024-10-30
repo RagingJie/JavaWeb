@@ -29,7 +29,7 @@ public class DogConfig {
 //    }
 
     @Bean("dog2")
-    @ConditionalOnBean(value = MacCondition.class) // 类存在时，将dog2放入ioc容器中
+    @ConditionalOnBean(value = WindowsCondition.class) // 类存在时，将dog2放入ioc容器中
     public Dog dog2() {
         return new Dog("@ConditionalOnBean");
     }
@@ -38,6 +38,11 @@ public class DogConfig {
     @ConditionalOnResource(resources = "classpath:application.yml")  // 资源存在时，放入ioc容器中，
     public Dog dog3() {
         return new Dog("@ConditionalOnResource");
+    }
+
+    @Bean
+    public Dog dog4() {
+        return new Dog("Dog4...........");
     }
 
 }
