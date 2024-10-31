@@ -5,8 +5,10 @@ import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
 import com.naruto.ssm.ioc.dao.Car;
 import com.naruto.ssm.ioc.dao.UserDao;
+import com.naruto.ssm.ioc.pojo.Cat;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
+import com.naruto.ssm.ioc.pojo.Pig;
 import com.naruto.ssm.ioc.service.PerceptionService;
 import com.naruto.ssm.ioc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +34,11 @@ public class SsmApplication {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
+        Cat cat = ioc.getBean(Cat.class);
+        System.out.println("cat=>" + cat);
 
+        Pig pig = ioc.getBean(Pig.class);
+        System.out.println("pig=> " + pig);
     }
 
     /*
