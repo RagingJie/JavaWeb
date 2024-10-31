@@ -7,6 +7,7 @@ import com.naruto.ssm.ioc.dao.Car;
 import com.naruto.ssm.ioc.dao.UserDao;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
+import com.naruto.ssm.ioc.service.PerceptionService;
 import com.naruto.ssm.ioc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
@@ -24,11 +25,36 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
-
     /*
-         构造器注入
+         @Value注解使用
      */
     public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+        System.out.println("ioc容器创建成功！！！");
+
+
+    }
+
+    /*
+         感知接口的实现运用
+     */
+    public static void test10BeanAnnotation(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+        System.out.println("ioc容器创建成功！！！");
+
+        PerceptionService perceptionService = ioc.getBean(PerceptionService.class);
+        System.out.println("perceptionService=> " + perceptionService);
+
+        System.out.println("osType=>" + perceptionService.getOsType());
+
+        System.out.println("Bean名字=>" + perceptionService.getBeanName());
+    }
+
+
+    /*
+         构造器注入，set方法注入
+     */
+    public static void test09BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
@@ -39,7 +65,7 @@ public class SsmApplication {
     /*
          测试自动注入
      */
-    public static void test0BeanAnnotation(String[] args) {
+    public static void test08BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
