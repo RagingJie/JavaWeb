@@ -10,13 +10,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnResource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Primary;
 
 /**
  * @Author
  * @Date 2024/10/23 1:23
  * @Description:
  */
-@Configuration // 告诉Spring容器，这是一个配置类
+//@Configuration // 告诉Spring容器，这是一个配置类
 public class DogConfig {
 
 
@@ -34,6 +35,7 @@ public class DogConfig {
         return new Dog("@ConditionalOnBean");
     }
 
+    @Primary
     @Bean("dog3")
     @ConditionalOnResource(resources = "classpath:application.yml")  // 资源存在时，放入ioc容器中，
     public Dog dog3() {

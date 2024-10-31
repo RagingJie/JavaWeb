@@ -4,6 +4,7 @@ import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
 import com.naruto.ssm.ioc.dao.Car;
+import com.naruto.ssm.ioc.dao.UserDao;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
 import com.naruto.ssm.ioc.service.UserService;
@@ -23,10 +24,22 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+
+    /*
+         构造器注入
+     */
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
+        System.out.println("ioc容器创建成功！！！");
+
+        UserDao userDao = ioc.getBean(UserDao.class);
+        System.out.println("userDao=> " + userDao);
+    }
+
     /*
          测试自动注入
      */
-    public static void main(String[] args) {
+    public static void test0BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 

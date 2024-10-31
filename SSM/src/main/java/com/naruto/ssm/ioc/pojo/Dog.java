@@ -3,6 +3,7 @@ package com.naruto.ssm.ioc.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Author
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
  * @Description:
  */
 @Data
+@Repository
 public class Dog {
 
     private String attribute;
@@ -20,6 +22,6 @@ public class Dog {
     }
 
     public Dog() {
-        System.out.println("Dog的构造器.....");
+        System.out.println("Dog的无参构造器.....");
     }
 }
