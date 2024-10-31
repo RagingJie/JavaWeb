@@ -18,7 +18,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Map;
 
 @Import(CoreConstants.class)  // 直接往Spring的容器中注册某一个对象，只要是关于组件的注解，放在哪个层下面的类上都可以，只要能被Spring扫描到
@@ -30,7 +35,7 @@ public class SsmApplication {
     /*
          @Value注解使用
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
@@ -39,6 +44,12 @@ public class SsmApplication {
 
         Pig pig = ioc.getBean(Pig.class);
         System.out.println("pig=> " + pig);
+
+        // 资源工具
+        File file = ResourceUtils.getFile("classpath:image/头像.jpg");
+        System.out.println(file);
+        int available = new FileInputStream(file).available();
+        System.out.println("文件大小=>" + available);
     }
 
     /*
@@ -85,7 +96,6 @@ public class SsmApplication {
     public static void test07BeanAnnotation(String[] args) {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
-
 
         UserController userController = ioc.getBean(UserController.class);
         System.out.println("userController=> " + userController);
