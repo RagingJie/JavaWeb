@@ -4,6 +4,7 @@ import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
 import com.naruto.ssm.ioc.dao.Car;
+import com.naruto.ssm.ioc.dao.DeliveryDao;
 import com.naruto.ssm.ioc.dao.UserDao;
 import com.naruto.ssm.ioc.pojo.Cat;
 import com.naruto.ssm.ioc.pojo.Dog;
@@ -50,6 +51,10 @@ public class SsmApplication {
         System.out.println(file);
         int available = new FileInputStream(file).available();
         System.out.println("文件大小=>" + available);
+
+        DeliveryDao bean = ioc.getBean(DeliveryDao.class);
+        bean.saveDeliveryDao();
+        System.out.println(bean);
     }
 
     /*

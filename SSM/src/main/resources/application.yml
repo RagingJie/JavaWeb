@@ -4,6 +4,8 @@ server:
 spring:
   application:
     name: ioc
+  profiles:
+    active: dev
 
 attribute:
   name: 你好
