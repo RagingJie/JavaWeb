@@ -1,6 +1,5 @@
 package com.naruto.ssm.ioc.service;
 
-import lombok.Data;
 import lombok.ToString;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.context.EnvironmentAware;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
  */
 @ToString
 @Service
-public class PerceptionService implements EnvironmentAware, BeanNameAware {
+public class AwareService implements EnvironmentAware, BeanNameAware {
 
     // 环境变量
     private Environment environment;
