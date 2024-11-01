@@ -8,16 +8,14 @@ import com.naruto.ssm.ioc.pojo.Cat;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
 import com.naruto.ssm.ioc.pojo.Pig;
-import com.naruto.ssm.ioc.service.PerceptionService;
+import com.naruto.ssm.ioc.service.AwareService;
 import com.naruto.ssm.ioc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -25,7 +23,6 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
@@ -111,12 +108,12 @@ public class SsmApplication {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
-        PerceptionService perceptionService = ioc.getBean(PerceptionService.class);
-        System.out.println("perceptionService=> " + perceptionService);
+        AwareService awareService = ioc.getBean(AwareService.class);
+        System.out.println("perceptionService=> " + awareService);
 
-        System.out.println("osType=>" + perceptionService.getOsType());
+        System.out.println("osType=>" + awareService.getOsType());
 
-        System.out.println("Bean名字=>" + perceptionService.getBeanName());
+        System.out.println("Bean名字=>" + awareService.getBeanName());
     }
 
 

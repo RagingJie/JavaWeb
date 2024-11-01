@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -13,6 +14,8 @@ import javax.annotation.PreDestroy;
  * @Date 2024/10/23 1:53
  * @Description:
  */
+
+//BeanPostProcessor：Bean外挂修改器
 @Data
 public class User implements InitializingBean, DisposableBean {
 
@@ -24,38 +27,38 @@ public class User implements InitializingBean, DisposableBean {
     @Autowired
     public void setCar(Car car) {
         this.car = car;
-        System.out.println("自动注入setCar......" + car);
+        System.out.println("【User】 ==> 自动注入setCar......" + car);
     }
 
     public User() {
-        System.out.println("构造User......");
+        System.out.println("【User】 ==> 构造User......");
     }
 
     @PostConstruct
     public void postConstruct(){
-        System.out.println("@PostConstruct...........");
+        System.out.println("【User】 ==> @PostConstruct...........");
     }
 
     @PreDestroy
     public void preDestroy(){
-        System.out.println("@PreDestroy.........");
+        System.out.println("【User】 ==> @PreDestroy.........");
     }
 
     public void initUser() {
-        System.out.println("@Bean 初始化.......User");
+        System.out.println("【User】 ==> @Bean 初始化.......User");
     }
 
     public void destroyUser() {
-        System.out.println("@Bean 销毁.......User");
+        System.out.println("【User】 ==> @Bean 销毁.......User");
     }
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("【DisposableBean】..... destroy");
+        System.out.println("【User】 ==> 【DisposableBean】..... destroy");
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println("【InitializingBean】..... afterPropertiesSet");
+        System.out.println("【User】 ==> 【InitializingBean】..... afterPropertiesSet");
     }
 }
