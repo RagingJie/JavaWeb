@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--    通过xml配置bean，原始的spring ioc容器管理组件方式-->
+    <bean id="BYD" class="com.naruto.ssm.ioc.dao.Car"></bean>
+    <bean id="XIAOMI" class="com.naruto.ssm.ioc.dao.Car">
+        <property name="name" value="小米汽车"></property>
+        <property name="createTime" value="#{new java.util.Date()}"></property>
+        <property name="weight" value="158.6"></property>
+    </bean>
+
+    <!--配置批量扫描-->
+    <context:component-scan base-package="com.naruto.ssm.ioc"/>
+
+    <!--    导入外部属性文件-->
+    <context:property-placeholder location="conf/chicken.properties" file-encoding="UTF-8"/>
+</beans>

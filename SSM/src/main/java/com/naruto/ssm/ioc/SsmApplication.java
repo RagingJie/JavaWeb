@@ -4,6 +4,7 @@ import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
 import com.naruto.ssm.ioc.dao.Car;
+import com.naruto.ssm.ioc.dao.Chicken;
 import com.naruto.ssm.ioc.dao.DeliveryDao;
 import com.naruto.ssm.ioc.dao.UserDao;
 import com.naruto.ssm.ioc.pojo.Cat;
@@ -19,6 +20,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.ResourceUtils;
 
@@ -34,7 +37,30 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+    /**
+     * @param args
+     * @return void
+     * @author Naruto
+     * @date 2024/11/1 9:53
+     * @description spring原生方式，创建ioc容器
+     */
+    public static void main(String[] args) {
+        // 文件系统，其他盘中找
+        new FileSystemXmlApplicationContext();
 
+        // 使用类路径去找
+        ClassPathXmlApplicationContext ioc = new ClassPathXmlApplicationContext("classpath:dev.xml");
+        String[] beanDefinitionNames = ioc.getBeanDefinitionNames();
+        for (String beanDefinitionName : beanDefinitionNames) {
+            System.out.println("beanDefinitionName=> " + beanDefinitionName);
+        }
+
+        Car xiaomi = ioc.getBean("XIAOMI", Car.class);
+        System.out.println("xiaomi=> " + xiaomi);
+
+        Map<String, Chicken> beansOfType = ioc.getBeansOfType(Chicken.class);
+        System.out.println(beansOfType);
+    }
 
     /*
          注解：@Profile()  理解多环境
