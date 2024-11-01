@@ -1,8 +1,9 @@
 package com.naruto.ssm.ioc.dao;
 
 import lombok.Data;
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 /**
  * @Author
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
  * @Description:
  */
 @Data
-public class User {
+public class User implements InitializingBean, DisposableBean {
 
     private String username;
     private String password;
@@ -20,7 +21,7 @@ public class User {
     @Autowired
     public void setCar(Car car) {
         this.car = car;
-        System.out.println("自动注入setCar...........");
+        System.out.println("自动注入setCar......" + car);
     }
 
     public User() {
@@ -33,5 +34,15 @@ public class User {
 
     public void destroyUser() {
         System.out.println("@Bean 销毁.......User");
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("【DisposableBean】..... destroy");
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("【InitializingBean】..... afterPropertiesSet");
     }
 }
