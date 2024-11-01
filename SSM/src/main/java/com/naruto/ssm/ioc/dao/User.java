@@ -5,6 +5,9 @@ import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 /**
  * @Author
  * @Date 2024/10/23 1:53
@@ -26,6 +29,16 @@ public class User implements InitializingBean, DisposableBean {
 
     public User() {
         System.out.println("构造User......");
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("@PostConstruct...........");
+    }
+
+    @PreDestroy
+    public void preDestroy(){
+        System.out.println("@PreDestroy.........");
     }
 
     public void initUser() {
