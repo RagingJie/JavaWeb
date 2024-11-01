@@ -18,6 +18,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.util.ResourceUtils;
 
@@ -33,10 +34,24 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+
+
+    /*
+         注解：@Profile()  理解多环境
+    */
+    public static void test12BeanAnnotation(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class, args);
+        System.out.println("ioc容器创建成功！！！");
+
+        DeliveryDao bean = ioc.getBean(DeliveryDao.class);
+        bean.saveDeliveryDao();
+        System.out.println(bean);
+    }
+
     /*
          @Value注解使用
      */
-    public static void main(String[] args) throws IOException {
+    public static void test11BeanAnnotation(String[] args) throws IOException {
         ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class);
         System.out.println("ioc容器创建成功！！！");
 
@@ -51,10 +66,6 @@ public class SsmApplication {
         System.out.println(file);
         int available = new FileInputStream(file).available();
         System.out.println("文件大小=>" + available);
-
-        DeliveryDao bean = ioc.getBean(DeliveryDao.class);
-        bean.saveDeliveryDao();
-        System.out.println(bean);
     }
 
     /*
