@@ -1,5 +1,5 @@
 ## Bean的生命周期
 
-![Bean的声明周期图](D:\WorkSpace\JavaWeb\SSM\image\生命周期.png)
+![Bean的声明周期图](image\生命周期.png)
 
 **属性注入在初始化之前**
