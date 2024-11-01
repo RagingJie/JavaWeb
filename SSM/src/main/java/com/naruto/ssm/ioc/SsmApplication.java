@@ -3,10 +3,7 @@ package com.naruto.ssm.ioc;
 import ch.qos.logback.core.CoreConstants;
 import com.naruto.ssm.controller.StuController;
 import com.naruto.ssm.ioc.controller.UserController;
-import com.naruto.ssm.ioc.dao.Car;
-import com.naruto.ssm.ioc.dao.Chicken;
-import com.naruto.ssm.ioc.dao.DeliveryDao;
-import com.naruto.ssm.ioc.dao.UserDao;
+import com.naruto.ssm.ioc.dao.*;
 import com.naruto.ssm.ioc.pojo.Cat;
 import com.naruto.ssm.ioc.pojo.Dog;
 import com.naruto.ssm.ioc.pojo.Person;
@@ -16,6 +13,7 @@ import com.naruto.ssm.ioc.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
@@ -37,6 +35,18 @@ import java.util.Map;
 @ComponentScan(basePackages = "com.naruto.ssm")  // 组件批量扫描，只扫利用Spring相关注解注册到容器中的组件
 public class SsmApplication {
 
+    /*
+        Bean的生命周期
+    */
+    public static void main(String[] args) {
+        ConfigurableApplicationContext ioc = SpringApplication.run(SsmApplication.class, args);
+        System.out.println("\n===============ioc容器创建=============\n");
+
+        User user = ioc.getBean("user", User.class);
+        System.out.println("运行user=>" + user);
+
+    }
+
     /**
      * @param args
      * @return void
@@ -44,7 +54,7 @@ public class SsmApplication {
      * @date 2024/11/1 9:53
      * @description spring原生方式，创建ioc容器
      */
-    public static void main(String[] args) {
+    public static void test13BeanAnnotation(String[] args) {
         // 文件系统，其他盘中找
         new FileSystemXmlApplicationContext();
 
