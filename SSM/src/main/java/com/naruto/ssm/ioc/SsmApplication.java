@@ -42,6 +42,9 @@ public class SsmApplication {
         User user = ioc.getBean("user", User.class);
         System.out.println("运行user=>" + user);
 
+        UserTemp bean = ioc.getBean(UserTemp.class);
+        System.out.println(bean);
+
     }
 
     /**
