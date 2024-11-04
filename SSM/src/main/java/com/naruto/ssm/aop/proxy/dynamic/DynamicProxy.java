@@ -1,6 +1,7 @@
 package com.naruto.ssm.aop.proxy.dynamic;
 
 import com.naruto.ssm.aop.calculator.MathCalculator;
+import com.naruto.ssm.aop.log.LogUtil;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -65,10 +66,17 @@ public class DynamicProxy {
                 target.getClass().getClassLoader(),
                 target.getClass().getInterfaces(),
                 (proxy, method, args) -> {
-                    // 拦截器
-                    System.out.println("【日志】：【" + method.getName() + "】开始，参数为：" + Arrays.toString(args));
-                    Object result = method.invoke(target, args);
-                    System.out.println("【日志】：【" + method.getName() + "】结束，结果为：" + result);
+                    Object result = null;
+                    try {
+                        LogUtil.logStart(method.getName(), args);
+                        result = method.invoke(target, args);
+                        LogUtil.logReturn(method.getName(), result);
+                        return result;
+                    } catch (Exception e) {
+                        LogUtil.logException(method.getName(), e);
+                    } finally {
+                        LogUtil.logEnd(method.getName());
+                    }
                     return result;
                 }
         );
