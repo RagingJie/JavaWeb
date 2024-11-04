@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 //    2、静态代理：
 //          定义：定义一个代理对象，包装这个组件。以后业务的执行，从代理开始，不直接调用组件；
 //          特点：定义期间就制定好了互相代理关系
+
 @Component
 public class MathCalculatorImpl implements MathCalculator {
     @Override
     public int add(int x, int y) {
-        System.out.println("结果：" + (x + y));
         return x + y;
     }
 
