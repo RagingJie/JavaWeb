@@ -1,7 +1,7 @@
 package com.naruto.ssm.aop.service.Impl;
 
 import com.naruto.ssm.aop.service.UserService;
-import com.naruto.ssm.ioc.annotate.UUID_ID;
+import com.naruto.ssm.ioc.annotate.UUID;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,13 +24,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void getUser(String value, int a) {
-        System.out.println("里面有@UUID_ID........" + value);
+        System.out.println("里面有@UUID........" + value);
     }
 
     @Override
-    @UUID_ID
+    @UUID
     public void setUser() {
-        System.out.println("方法上有@UUID_ID.....");
+        System.out.println("方法上有@UUID.....");
     }
 
 

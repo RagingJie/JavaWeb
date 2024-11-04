@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 public class UUIDPostProcessor implements BeanPostProcessor {
 
     @Override
-    @SneakyThrows
+    @SneakyThrows  // @SneakyThrows 注解背后的实现原理是，Lombok 会在编译时自动为标记的方法生成 try-catch 语句，并在捕获到受检查异常时，将它们转换为 RuntimeException 类型的异常重新抛出，从而绕过了编译器对受检查异常的检查。
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
         // 获取类的所有变量
         Field[] fields = bean.getClass().getDeclaredFields();

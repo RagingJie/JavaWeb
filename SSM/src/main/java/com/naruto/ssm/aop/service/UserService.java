@@ -1,6 +1,6 @@
 package com.naruto.ssm.aop.service;
 
-import com.naruto.ssm.ioc.annotate.UUID_ID;
+import com.naruto.ssm.ioc.annotate.UUID;
 
 /**
  * @Author
@@ -13,7 +13,7 @@ public interface UserService {
 
     void updateUser(int x, int y);
 
-    void getUser(@UUID_ID String value, int a);
+    void getUser(@UUID String value, int a);
 
     void setUser();
 }
