@@ -36,6 +36,8 @@ public class LogAspect {
             @AfterReturning：方法执行正常返回结果运行
             @AfterThrowing：方法抛出异常运行
             @After：方法执行之后运行，相当于finally里面运行的代码逻辑（捕获异常里的）
+            @Around: 环绕通知，可以控制目标方法是否执行，修改目标方法参数、执行结果等。
+
         何地？
             切入点表达式：
                 execution(方法的全签名)  []包裹的是可以省略的

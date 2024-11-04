@@ -32,6 +32,6 @@ public class Test01 {
 //        userService.getUser("注解",10);   // 失败了，后续再研究吧@args()
 //        userService.setUser();
 
-        mathCalculator.divide(10,5);
+        mathCalculator.divide(10,0);
     }
 }
