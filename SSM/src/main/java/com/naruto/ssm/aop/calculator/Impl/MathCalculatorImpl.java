@@ -34,6 +34,7 @@ public class MathCalculatorImpl implements MathCalculator {
 
     @Override
     public int divide(int x, int y) {
+        System.out.println("目标方法执行.....");
         return x / y;
     }
 }

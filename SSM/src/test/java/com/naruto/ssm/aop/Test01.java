@@ -30,6 +30,8 @@ public class Test01 {
 //        mathCalculator.add(8,9);
 
 //        userService.getUser("注解",10);   // 失败了，后续再研究吧@args()
-        userService.setUser();
+//        userService.setUser();
+
+        mathCalculator.divide(10,5);
     }
 }
