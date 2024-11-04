@@ -34,13 +34,19 @@ public class LogAspect {
                     全写法：[public] int [com.naruto.ssm.aop.calculator.MathCalculator].add(int,int) [throws IndexOutOfBoundsException]
                     省略写法：int add(int,int)
                     也可以用通配符的方式书写 int *(int,int)
-                    通配符：*，表示任意字符
+                    通配符：
+                        *：表示任意字符
+                        ..：
+                            1）、参数位置：表示多个参数，任意类型
+                            2）、类型位置：代表多个层级
+                     最省略：* *(..)
+
     */
 
     /**
      * @description 开始日志
      */
-    @Before("execution(int *(int,int))")
+    @Before("execution(int com.naruto.ssm.aop.calculator.MathCalculator.*(..))")  // 建议精确的找位置切入
     public void logStart() {
         System.out.println("【切面 - 日志】：开始.....");
     }
@@ -48,7 +54,7 @@ public class LogAspect {
     /**
      * @description 结束日志
      */
-    @After("execution(int *(int,int))")
+    @After("execution(int com.naruto.ssm.aop.calculator.MathCalculator.*(..))")
     public void logEnd() {
         System.out.println("【切面 - 日志】结束....");
     }
@@ -56,7 +62,7 @@ public class LogAspect {
     /**
      * @description 异常日志
      */
-    @AfterThrowing("execution(int *(int,int))")
+    @AfterThrowing("execution(int com.naruto.ssm.aop.calculator.MathCalculator.*(..))")
     public void logException() {
         System.out.println("【切面 - 日志】异常.....");
     }
@@ -64,8 +70,26 @@ public class LogAspect {
     /**
      * @description 返回日志
      */
-    @AfterReturning("execution(int *(int,int))")
+    @AfterReturning("execution(int com.naruto.ssm.aop.calculator.MathCalculator.*(..))")
     public void logReturn() {
-        System.out.println("【切面 - 日志】：返回");
+        System.out.println("【切面 - 日志】：返回......");
+    }
+
+    @Before("args(int,int)")
+    public void haha() {
+        System.out.println("【切面 - 日志】：haha......");
+    }
+
+    // 参数上有没有标注注解
+    @Before("@args(com.naruto.ssm.ioc.annotate.UUID_ID) && within(com.naruto.ssm.aop.service.UserService)")
+    // 没成功，后续再研究吧
+    public void apple() {
+        System.out.println("【切面 - 日志】：参数上有没有标注解......");
+    }
+
+    // 方法上有没有标注注解
+    @Before("@annotation(com.naruto.ssm.ioc.annotate.UUID_ID)")   // 注解是标在实现类的方法上的，不是接口下方法的上面的
+    public void banana() {
+        System.out.println("【切面 - 日志】：方法上有没有标注注解......");
     }
 }
