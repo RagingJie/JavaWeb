@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @Date 2024/11/5 0:15
  * @Description:
  */
-@Order(20)
+@Order(1)
 @Component
 @Aspect
 public class AuthAspect {

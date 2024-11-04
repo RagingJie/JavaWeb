@@ -24,7 +24,7 @@ import java.util.Arrays;
  * @Date 2024/11/4 11:28
  * @Description:
  */
-@Order(1) //数字越小，优先级越高，数字越大，优先级越低；数字越小，越先执行，就必须套到最外层  // 没有加@Order的时候，默认按组件的字母前后顺序排优先级
+@Order(2) //数字越小，优先级越高，数字越大，优先级越低；数字越小，越先执行，就必须套到最外层  // 没有加@Order的时候，默认按组件的字母前后顺序排优先级
 @Aspect   // 告诉Spring这个组件是切面
 @Component
 public class LogAspect {
