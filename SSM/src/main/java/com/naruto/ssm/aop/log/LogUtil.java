@@ -51,7 +51,7 @@ public class LogUtil {
      * @return void
      * @author Naruto
      * @date 2024/11/4 10:54
-     * @description 异常日志
+     * @description 返回日志
      */
     public static void logReturn(String name, Object result) {
         System.out.println("【日志】：【" + name + "】返回；返回值：" + result);
