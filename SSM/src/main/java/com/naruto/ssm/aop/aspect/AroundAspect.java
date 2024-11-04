@@ -32,7 +32,7 @@ public class AroundAspect {
         try {
             System.out.println("【环绕 - 前置通知】");
             // 接受传入参数的，proceed实现修改目标方法执行用的参数
-            result = pjp.proceed(args); // 推荐方法继续执行的切点，相当于反射的 method.invoke()
+            result = pjp.proceed(args); // 推荐方法继续执行的切点，相当于反射的 method.invoke()  返回值为null时，会报AopInvocationException
             System.out.println("【环绕 - 返回通知】，返回值：" + result);
         } catch (Throwable e) {
             System.out.println("【环绕 - 异常通知】，异常信息：" + e.getMessage());
