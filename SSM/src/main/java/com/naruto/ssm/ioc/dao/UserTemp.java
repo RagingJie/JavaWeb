@@ -1,8 +1,10 @@
 package com.naruto.ssm.ioc.dao;
 
-import com.naruto.ssm.ioc.annotate.UUID_ID;
+import com.naruto.ssm.ioc.annotate.UUID;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
 
 /**
  * @Author
@@ -10,9 +12,10 @@ import org.springframework.stereotype.Component;
  * @Description:
  */
 @Data
-@Component
+@Repository
+@Scope("prototype")
 public class UserTemp {
 
-    @UUID_ID(value = "1")
+    @UUID(value = "test001")
     private String id;
 }

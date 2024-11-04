@@ -10,7 +10,7 @@ import java.lang.annotation.*;
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD})  // 作用的目标位置
 @Retention(RetentionPolicy.RUNTIME)   // 保留状态
 @Documented  // 生成javaDoc文档时，可以在文档中显示
-public @interface UUID_ID {
+public @interface UUID {
 
     String value() default "";
 }
