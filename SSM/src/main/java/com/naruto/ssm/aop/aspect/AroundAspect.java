@@ -38,7 +38,7 @@ public class AroundAspect {
             System.out.println("【环绕 - 返回通知】，返回值：" + result);
         } catch (Throwable e) {
             System.out.println("【环绕 - 异常通知】，异常信息：" + e.getMessage());
-            throw e;
+            throw e;  // 让别人继续感知
         } finally {
             System.out.println("【环绕 - 后置通知】");
         }
