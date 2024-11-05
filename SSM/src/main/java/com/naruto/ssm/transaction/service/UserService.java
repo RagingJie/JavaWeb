@@ -16,5 +16,5 @@ public interface UserService {
      * @date 2024/11/5 16:13
      * @description 用户购买书籍结账
      */
-    boolean checkOut(String userName, Integer bookId, Integer bookNum);
+    boolean checkOut(String userName, Integer bookId, Integer bookNum) throws Exception;
 }

@@ -78,7 +78,7 @@ public class TransactionApplicationTest {
     }
 
     @Test
-    void checkOut() {
+    void checkOut() throws Exception {
         boolean lisi = userService.checkOut("lisi", 3, 5);
         System.out.println(lisi ? "结账成功" : "结账失败");
     }
