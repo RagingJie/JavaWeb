@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -26,13 +29,15 @@ public class AccountDao {
      * @date 2024/11/5 15:59
      * @description 根据用户名扣减用户余额
      */
-    public void updateBalanceByUsername(String username, BigDecimal priceNum) {
+    @Transactional(propagation = Propagation.REQUIRED, timeout = 5)  //
+    public void updateBalanceByUsername(String username, BigDecimal priceNum) throws Exception {
         // sql
         String sql = "update account set balance = balance - ? where username = ?";
         try {
-            // 执行sql
+            Thread.sleep(4000);
+//         执行sql
             jdbcTemplate.update(sql, priceNum, username);
-        } catch (DataAccessException e) {
+        } catch (Exception e) {
             System.out.println("扣减用户余额时，发生的错误信息：" + e.getCause());
         }
     }

@@ -6,6 +6,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author
@@ -66,6 +68,7 @@ public class BookDao {
      * @date 2024/11/5 15:48
      * @description 根据图书id更新库存
      */
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void updateBookStock(Integer id, Integer stockNum) {
         // 扣减库存sql
         String sql = "update book set stock = stock-? where id = ?";

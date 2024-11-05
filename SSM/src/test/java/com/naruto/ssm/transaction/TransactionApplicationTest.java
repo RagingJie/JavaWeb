@@ -73,13 +73,13 @@ public class TransactionApplicationTest {
     }
 
     @Test
-    void test06() {
+    void test06() throws Exception {
         accountDao.updateBalanceByUsername("zhangsan", BigDecimal.valueOf(45.8));
     }
 
     @Test
     void checkOut() throws Exception {
-        boolean lisi = userService.checkOut("lisi", 3, 5);
+        boolean lisi = userService.checkOut("lisi", 3, 10);
         System.out.println(lisi ? "结账成功" : "结账失败");
     }
 }
