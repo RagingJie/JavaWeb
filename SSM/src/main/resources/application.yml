@@ -1,16 +1,29 @@
+# 服务
 server:
+#  跨域端口号
   port: 8848
 
 spring:
+#  应用
   application:
     name: ioc
+#  当前运行环境
   profiles:
     active: dev
+#  数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/spring_study
     username: root
     password: 123456
+
+  servlet:
+#   文件上传大小限制
+    multipart:
+      enabled: true                 # 这个属性用于控制是否启用多部分请求支持;
+      max-file-size: 128MB          # 这个属性用于设置单个文件的最大允许大小;
+      max-request-size: 3GB         # 这个属性用于设置整个多部分请求的最大允许大小;
+      file-size-threshold: 512MB    # 这个属性用于设置文件在内存中存储的最大大小，超过这个大小的文件将被写入磁盘。
 
 attribute:
   name: 你好
