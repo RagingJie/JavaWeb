@@ -22,7 +22,6 @@ public class RequestTestAspect {
     public void setPoint() {
     }
 
-
     @Around("setPoint()")
     public Object aroundAdvice(ProceedingJoinPoint pjp) throws Throwable {
         // 返回值
@@ -31,18 +30,18 @@ public class RequestTestAspect {
         Object[] args = pjp.getArgs();
         // 签名
         Signature signature = pjp.getSignature();
-        System.out.println("【切面】切入的全签名 => " + signature);
+        System.out.println("【环绕通知 - 切面 - 切入点】切入的全签名 => " + signature);
         String name = signature.getName();
         try {
-            System.out.println("【环绕通知 - 切面】前置通知，方法【" + name + "】被调用，参数为 => " + Arrays.toString(args));
+            System.out.println("【环绕通知 - 切面 - 前置通知】，方法【" + name + "】被调用，参数为 => " + Arrays.toString(args));
             // 执行方法
             pjp.proceed(args);
-            System.out.println("【环绕通知 - 切面】返回通知，方法【" + name + "】执行后，返回值为 => " + object);
+            System.out.println("【环绕通知 - 切面 - 返回通知】，方法【" + name + "】执行后，返回值为 => " + object);
         } catch (Exception e) {
-            System.out.println("【环绕通知 - 切面】异常通知，方法【" + name + "】发生异常，异常信息为 => " + e.getCause());
+            System.out.println("【环绕通知 - 切面 - 异常通知】，方法【" + name + "】发生异常，异常信息为 => " + e.getCause());
             throw e;  // 让别人能够感知到
         } finally {
-            System.out.println("【环绕通知 - 切面】后置通知，方法【" + name + "】结束");
+            System.out.println("【环绕通知 - 切面 - 后置通知】，方法【" + name + "】结束");
         }
 
         // 返回结果
