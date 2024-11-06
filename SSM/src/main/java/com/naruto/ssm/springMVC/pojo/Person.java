@@ -1,14 +1,12 @@
 package com.naruto.ssm.springMVC.pojo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  * @Author
  * @Date 2024/11/6 16:54
  * @Description:
-*/
+ */
 @Data
 public class Person {
 
@@ -36,11 +34,13 @@ public class Person {
     // 年级
     private String grade;
 
+    @Data
+    public static class Address {
+        private String province;
+        private String city;
+        private String area;
+    }
+
 }
 
-@Data
-class Address {
-    private String province;
-    private String city;
-    private String area;
-}
+
