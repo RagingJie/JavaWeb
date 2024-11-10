@@ -17,9 +17,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class PractiseApplication {
 
     public static void main(String[] args) {
-        SeparatorUtil.getSeparator();
         SpringApplication.run(PractiseApplication.class, args);
-        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tRestFul架构风格项目启动.....");
+        SeparatorUtil.getSeparator();
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\tRestFul架构风格练习项目启动.....");
         SeparatorUtil.getSeparator();
     }
 }

@@ -29,6 +29,7 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public AjaxResult getAll() {
+        System.out.println("目标方法执行......");
         List<Employee> list = employeeService.getList();
         return AjaxResult.success(list);
     }
