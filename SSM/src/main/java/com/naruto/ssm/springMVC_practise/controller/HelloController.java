@@ -27,6 +27,13 @@ public class HelloController {
         return AjaxResult.success();
     }
 
+    /*
+        异常处理优先级:
+            本类 > 精确
+            全局 > 模糊
+
+     */
+
     /**
      * @param e
      * @return com.naruto.ssm.ioc.common.result.AjaxResult
