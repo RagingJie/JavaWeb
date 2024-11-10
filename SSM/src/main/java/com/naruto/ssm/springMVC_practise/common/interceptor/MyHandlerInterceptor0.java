@@ -1,5 +1,6 @@
 package com.naruto.ssm.springMVC_practise.common.interceptor;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Description: 自定义拦截器
  */
 @Component
-public class MyHandlerInterceptor implements HandlerInterceptor {
+public class MyHandlerInterceptor0 implements HandlerInterceptor {
 
     /**
      * @param request  HTTP 请求对象，可以通过它获取请求的相关信息。
@@ -28,8 +29,12 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        System.out.println("MyHandlerInterceptor.......preHandle...");
-        System.out.println(handler);
+        System.out.println("MyHandlerInterceptor0.......preHandle...");
+//        if (request.getHeader("username").equals("zhangsan")) {
+//            response.setContentType("application/json;charset=UTF-8");
+//            response.getWriter().write("没有权限");
+//            return false;
+//        }
         return true;
     }
 
@@ -46,7 +51,7 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        System.out.println("MyHandlerInterceptor.......postHandle...");
+        System.out.println("MyHandlerInterceptor0.......postHandle...");
     }
 
     /**
@@ -61,6 +66,6 @@ public class MyHandlerInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        System.out.println("MyHandlerInterceptor.......afterCompletion...");
+        System.out.println("MyHandlerInterceptor0.......afterCompletion...");
     }
 }
