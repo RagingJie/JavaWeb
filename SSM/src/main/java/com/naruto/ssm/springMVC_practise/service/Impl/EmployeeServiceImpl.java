@@ -1,5 +1,7 @@
 package com.naruto.ssm.springMVC_practise.service.Impl;
 
+import com.naruto.ssm.springMVC_practise.common.enums.BizExceptionEnum;
+import com.naruto.ssm.springMVC_practise.common.exception.BizException;
 import com.naruto.ssm.springMVC_practise.dao.EmployeeDao;
 import com.naruto.ssm.springMVC_practise.pojo.Employee;
 import com.naruto.ssm.springMVC_practise.service.EmployeeService;
@@ -38,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void update(Employee employee) {
 
-        if (employee.getId() == null) return;
+        if (employee.getId() == null) throw new BizException(BizExceptionEnum.ID_NULL);
 
         // 1、查询出员工原有信息
         Employee employeeTemp = employeeDao.getById(employee.getId());
