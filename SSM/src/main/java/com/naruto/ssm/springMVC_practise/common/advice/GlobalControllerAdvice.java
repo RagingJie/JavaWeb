@@ -2,7 +2,13 @@ package com.naruto.ssm.springMVC_practise.common.advice;
 
 import com.naruto.ssm.ioc.common.result.AjaxResult;
 import com.naruto.ssm.springMVC_practise.common.exception.BizException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author
@@ -38,5 +44,24 @@ public class GlobalControllerAdvice {
         e.printStackTrace();
         System.out.println("【全局】 - 业务异常处理..........");
         return AjaxResult.error(e.getCode(), e.getMessage());
+    }
+
+    /**
+     * @param e
+     * @return com.naruto.ssm.ioc.common.result.AjaxResult
+     * @author Naruto
+     * @date 2024/11/11 11:27
+     * @description 数据校验异常处理
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public AjaxResult handlerMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+        Map<String, String> errorMap = new HashMap<>();
+        BindingResult result = e.getBindingResult();
+        if (result.hasFieldErrors()) {
+            for (FieldError fieldError : result.getFieldErrors()) {
+                errorMap.put(fieldError.getCode(), fieldError.getDefaultMessage());
+            }
+        }
+        return AjaxResult.error("数据校验失败", errorMap);
     }
 }
