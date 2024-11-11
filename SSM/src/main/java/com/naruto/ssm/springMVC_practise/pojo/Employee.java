@@ -1,5 +1,6 @@
 package com.naruto.ssm.springMVC_practise.pojo;
 
+import com.naruto.ssm.springMVC_practise.common.annotation.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,9 @@ public class Employee {
     private String email;
 
     // 性别
+//    @Pattern(regexp = "^男$|^女$", message = "性别只能为：男 或 女")  // 使用正则表达式校验
+//    @Gender(message = "性别只能为：男 或 女")  // 使用自定义注解校验
+    @Gender(message = "gender.message")  // 国际化语言错误提示
     private String gender;
 
     // 地址
