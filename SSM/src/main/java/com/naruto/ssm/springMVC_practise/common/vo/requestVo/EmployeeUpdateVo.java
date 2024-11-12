@@ -1,10 +1,9 @@
-package com.naruto.ssm.springMVC_practise.pojo;
+package com.naruto.ssm.springMVC_practise.common.vo.requestVo;
 
 import com.naruto.ssm.springMVC_practise.common.annotation.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.PropertySource;
 
 import jakarta.validation.constraints.*;
 import java.math.BigDecimal;
@@ -17,7 +16,8 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class EmployeeUpdateVo {
+    @NotNull(message = "id不能未空")
     private Integer id;
     private String name;
     private Integer age;

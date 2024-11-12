@@ -1,17 +1,22 @@
 package com.naruto.ssm.springMVC_practise.controller;
 
 import com.naruto.ssm.ioc.common.result.AjaxResult;
+import com.naruto.ssm.springMVC_practise.common.vo.requestVo.EmployeeAddVo;
+import com.naruto.ssm.springMVC_practise.common.vo.requestVo.EmployeeUpdateVo;
+import com.naruto.ssm.springMVC_practise.common.vo.responseVo.EmployeeResponseVo;
 import com.naruto.ssm.springMVC_practise.pojo.Employee;
 import com.naruto.ssm.springMVC_practise.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.HashMap;
+import jakarta.validation.Valid;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Author
@@ -32,14 +37,29 @@ import java.util.Map;
  * 6：自定义校验 = 自定义校验注解 + 自定义校验器
  *
  */
+@Tag(name = "员工管理")
 @CrossOrigin  // 允许跨域
 @RequestMapping("/api/v1")
 @RestController
 public class EmployeeController {
 
+    /**
+     * 设计模式：单一职责；
+     * JavaBean也要分层，各种xxO：
+     * Pojo：普通java类
+     * Dao：Database Access Object ： 专门用来访问数据库的对象
+     * DTO：Data Transfer Object： 专门用来传输数据的对象；
+     * TO：transfer Object： 专门用来传输数据的对象；
+     * BO：Business Object： 业务对象（Service），专门用来封装业务逻辑的对象；
+     * VO：View/Value Object： 值对象，视图对象（专门用来封装前端数据的对象）
+     */
+
     @Autowired
     EmployeeService employeeService;
 
+    @Parameters(
+            @Parameter(name = "id", required = true, description = "用户id")
+    )
     @GetMapping("/employee/{id}")
     public AjaxResult getEmployee(@PathVariable("id") Integer id) {
         Employee employee = employeeService.getById(id);
@@ -50,12 +70,21 @@ public class EmployeeController {
     public AjaxResult getAll() {
         System.out.println("目标方法执行......");
         List<Employee> list = employeeService.getList();
-        return AjaxResult.success(list);
+        // stream流的方式
+        List<EmployeeResponseVo> responseVoList = list.stream().map(item -> {
+            EmployeeResponseVo employeeResponseVo = new EmployeeResponseVo();
+            BeanUtils.copyProperties(item, employeeResponseVo);
+            return employeeResponseVo;
+        }).collect(Collectors.toList());
+        return AjaxResult.success(responseVoList);
     }
 
     @PostMapping("/employee")
-    public AjaxResult save(@RequestBody @Valid Employee employee/*, BindingResult result*/) {
+    public AjaxResult save(@RequestBody @Valid EmployeeAddVo employeeAddVo/*, BindingResult result*/) {
 //        if (!result.hasFieldErrors()) {
+        Employee employee = new Employee();
+        // 属性对拷
+        BeanUtils.copyProperties(employeeAddVo, employee);
         employeeService.save(employee);
         return AjaxResult.success();
 /*        } else {
@@ -71,11 +100,13 @@ public class EmployeeController {
      * 修改员工
      * 要求：前端发送请求把员工的json放在请求体中； 必须携带id
      *
-     * @param employee
+     * @param employeeUpdateVo
      * @return
      */
     @PutMapping("/employee")
-    public AjaxResult update(@RequestBody Employee employee) {
+    public AjaxResult update(@RequestBody @Valid EmployeeUpdateVo employeeUpdateVo) {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeUpdateVo, employee);
         employeeService.update(employee);
         return AjaxResult.success();
     }
