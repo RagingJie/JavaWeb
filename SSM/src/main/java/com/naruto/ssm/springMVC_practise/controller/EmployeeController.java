@@ -6,15 +6,17 @@ import com.naruto.ssm.springMVC_practise.common.vo.requestVo.EmployeeUpdateVo;
 import com.naruto.ssm.springMVC_practise.common.vo.responseVo.EmployeeResponseVo;
 import com.naruto.ssm.springMVC_practise.pojo.Employee;
 import com.naruto.ssm.springMVC_practise.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -57,15 +59,15 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @Parameters(
-            @Parameter(name = "id", required = true, description = "用户id")
-    )
+    @Operation(summary = "根据Id获取员工信息")
+    @Parameters(@Parameter(name = "id", required = true, description = "用户id", in = ParameterIn.PATH))
     @GetMapping("/employee/{id}")
     public AjaxResult getEmployee(@PathVariable("id") Integer id) {
         Employee employee = employeeService.getById(id);
         return AjaxResult.success(employee);
     }
 
+    @Operation(summary = "获取所有员工信息")
     @GetMapping("/employees")
     public AjaxResult getAll() {
         System.out.println("目标方法执行......");
@@ -79,6 +81,7 @@ public class EmployeeController {
         return AjaxResult.success(responseVoList);
     }
 
+    @Operation(summary = "保存员工信息")
     @PostMapping("/employee")
     public AjaxResult save(@RequestBody @Valid EmployeeAddVo employeeAddVo/*, BindingResult result*/) {
 //        if (!result.hasFieldErrors()) {
@@ -103,6 +106,7 @@ public class EmployeeController {
      * @param employeeUpdateVo
      * @return
      */
+    @Operation(summary = "更新员工信息")
     @PutMapping("/employee")
     public AjaxResult update(@RequestBody @Valid EmployeeUpdateVo employeeUpdateVo) {
         Employee employee = new Employee();
@@ -111,6 +115,8 @@ public class EmployeeController {
         return AjaxResult.success();
     }
 
+    @Operation(summary = "根据id删除员工信息")
+    @Parameters(@Parameter(name = "id", description = "用户id", required = true, in = ParameterIn.PATH))
     @DeleteMapping("/employee/{id}")
     public AjaxResult delete(@PathVariable("id") Integer id) {
         employeeService.deleteById(id);

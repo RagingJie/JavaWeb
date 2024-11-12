@@ -1,5 +1,7 @@
 package com.naruto.ssm.ioc.common.result;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.util.HashMap;
 
 /**
@@ -7,6 +9,7 @@ import java.util.HashMap;
  * @Date 2024/10/18 10:51
  * @Description: 返回结果类
  */
+@Schema(description = "响应类")
 public class AjaxResult extends HashMap<String, Object> {
 
     private static final long serialVersionUID = 1L;
@@ -14,14 +17,17 @@ public class AjaxResult extends HashMap<String, Object> {
     /**
      * 状态码
      */
+    @Schema(description = "状态码")
     public static final String CODE_TAG = "code";
     /**
      * 返回内容
      */
+    @Schema(description = "返回信息")
     public static final String MSG_TAG = "message";
     /**
      * 数据对象
      */
+    @Schema(description = "返回数据")
     public static final String DATA_TAG = "data";
 
     /**

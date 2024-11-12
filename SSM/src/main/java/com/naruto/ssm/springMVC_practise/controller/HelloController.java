@@ -1,6 +1,7 @@
 package com.naruto.ssm.springMVC_practise.controller;
 
 import com.naruto.ssm.ioc.common.result.AjaxResult;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.io.FileNotFoundException;
  * @Date 2024/11/11 0:35
  * @Description:
  */
+@Tag(name = "测试管理")
 @RestController
 public class HelloController {
 
