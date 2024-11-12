@@ -2,7 +2,7 @@ package com.naruto.ssm.springMVC_practise.common.filter;
 
 import org.springframework.stereotype.Component;
 
-import javax.servlet.*;
+import jakarta.servlet.*;
 import java.io.IOException;
 
 /**

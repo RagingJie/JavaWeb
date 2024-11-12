@@ -3,8 +3,8 @@ package com.naruto.ssm.springMVC_practise.common.validator;
 import com.naruto.ssm.springMVC_practise.common.annotation.Gender;
 import com.naruto.ssm.springMVC_practise.pojo.Employee;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * @Author

@@ -1,9 +1,9 @@
 package com.naruto.ssm.springMVC_practise.common.annotation;
 
 import com.naruto.ssm.springMVC_practise.common.validator.GenderValidator;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
 import java.lang.annotation.*;
 
 /**
