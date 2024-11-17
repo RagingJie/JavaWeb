@@ -5,11 +5,14 @@ import com.naruto.mybatis.model.result.R;
 import com.naruto.mybatis.model.vo.requestVo.AddEmpVo;
 import com.naruto.mybatis.model.vo.requestVo.UpdateEmpVo;
 import com.naruto.mybatis.service.EmpService;
+import com.naruto.mybatis.utils.SeparatorUtil;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.UnsatisfiedServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @ControllerAdvice
 @CrossOrigin  // 允许跨域
@@ -19,6 +22,12 @@ public class EmpController {
 
     @Autowired
     private EmpService empService;
+
+    @GetMapping(path = "/getAll")
+    public R getAllEmp() {
+        List<Emp> list = empService.getAll();
+        return R.success(list);
+    }
 
     /**
      * 根据员工id查询员工信息
@@ -42,13 +51,15 @@ public class EmpController {
         Emp emp = new Emp();
         BeanUtils.copyProperties(addEmpVo, emp);
         empService.save(emp);
+        System.out.println("添加员工信息的id为 => " + emp.getId());
+        SeparatorUtil.getSeparator();
         return R.success("保存成功");
     }
 
     /**
      * 更新员工信息
      *
-     * @param updateEmp 员工信息
+     * @param updateEmpVo 员工信息
      * @return
      */
     @PutMapping(path = "/updateEmp", consumes = "application/json")

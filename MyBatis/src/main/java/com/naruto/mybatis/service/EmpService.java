@@ -2,6 +2,8 @@ package com.naruto.mybatis.service;
 
 import com.naruto.mybatis.model.pojo.Emp;
 
+import java.util.List;
+
 public interface EmpService {
 
     /**
@@ -32,4 +34,9 @@ public interface EmpService {
      * @param id 员工id
      */
     void delete(Integer id);
+
+    /**
+     * 获取所有员工信息
+     */
+    List<Emp> getAll();
 }

@@ -3,6 +3,8 @@ package com.naruto.mybatis.mapper;
 import com.naruto.mybatis.model.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface EmpMapper {
 
@@ -34,4 +36,11 @@ public interface EmpMapper {
      * @param emp 员工信息
      */
     void update(Emp emp);
+
+    /**
+     * 获取所有员工信息
+     *
+     * @return 所有员工信息
+     */
+    List<Emp> getAll();
 }

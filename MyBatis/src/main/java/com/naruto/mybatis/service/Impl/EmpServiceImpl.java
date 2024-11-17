@@ -6,6 +6,8 @@ import com.naruto.mybatis.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmpServiceImpl implements EmpService {
 
@@ -51,6 +53,11 @@ public class EmpServiceImpl implements EmpService {
     @Override
     public void delete(Integer id) {
         empMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Emp> getAll() {
+        return empMapper.getAll();
     }
 
 
