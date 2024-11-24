@@ -25,6 +25,20 @@
         select *
         from t_emp
     </select>
+    <select id="getEmpByIdAndName" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select *
+        from t_emp
+        where id = #{id}
+          and name = #{name}
+    </select>
+    <select id="getEmpHaHa" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select *
+        from t_emp
+        where id = #{id}
+          and emp_name = #{names.name}
+          and age = #{ages[2]}
+          and emp_salary = #{e.empSalary}
+    </select>
     <!--    保存员工信息-->
     <!--
         useGeneratedKeys="true"  开启主键回写功能
