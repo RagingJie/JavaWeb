@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.naruto.mybatis.mapper.CustomerMapper">
+    <!--    自定义结果集-->
+    <resultMap id="CustomerRM" type="com.naruto.mybatis.model.pojo.Customer">
+        <!--        数据库查询的列属性要和column属性名称一致-->
+        <id column="c_id" property="id"/>
+        <result column="customer_name" property="customerName"/>
+        <result column="phone" property="phone"/>
+        <!--
+        一对多关联关系
+        collection: 说明 一对N 的封装规则
+        ofType: 封装的集合元素类型
+        -->
+        <collection property="orders" ofType="com.naruto.mybatis.model.pojo.Order">
+            <id column="id" property="id"/>
+            <result column="address" property="address"/>
+            <result column="amount" property="amount"/>
+            <result column="customer_id" property="customerId"/>
+        </collection>
+    </resultMap>
+    <select id="getCustomerWithOrdersById" resultMap="CustomerRM">
+        SELECT o.*,
+               c.id c_id,
+               c.customer_name,
+               c.phone
+        FROM t_customer c
+                 LEFT JOIN t_order o ON c.id = o.customer_id
+        WHERE c.id = #{id}
+    </select>
 </mapper>
