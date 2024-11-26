@@ -16,9 +16,27 @@
         from t_emp
     </select>
     <!--    返回Map，指定Map的value中写集合中元素的类型-->
-<!--    <select id="getAllMap" resultType="java.util.Map">-->
+    <!--    <select id="getAllMap" resultType="java.util.Map">-->
     <select id="getAllMap" resultType="com.naruto.mybatis.model.pojo.Emp">
         select *
         from t_emp
+    </select>
+
+    <!--   默认封装规则(resultType)：JavaBean 中的属性名 去数据库表中 找对应列名的值。
+           映射封装自定义规则(resultMap)：我们来告诉MyBatis 如何把结果封装到Bean中
+           明确指定每一列如何封装到指定的Bean中
+    -->
+    <resultMap id="EmpRM" type="com.naruto.mybatis.model.pojo.Emp">
+        <!--  id: 声明主键映射规则-->
+        <id column="id" property="id"></id>
+        <!--  result: 声明普通属性映射规则-->
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="emp_salary" property="empSalary"></result>
+    </resultMap>
+    <select id="getEmpById" resultMap="EmpRM">
+        select *
+        from t_emp
+        where id = #{id}
     </select>
 </mapper>
