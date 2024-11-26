@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.naruto.mybatis.mapper.OrderMapper">
+
+    <!--    自定义结果集-->
+    <resultMap id="orderRM" type="com.naruto.mybatis.model.pojo.Order">
+        <id column="id" property="id"/>
+        <result column="address" property="address"/>
+        <result column="amount" property="amount"/>
+        <result column="customer_id" property="customerId"/>
+        <!--        一对一关联关系-->
+        <association property="customer" javaType="com.naruto.mybatis.model.pojo.Customer">
+            <id column="c_id" property="id"></id>
+            <result column="phone" property="phone"></result>
+            <result column="customer_name" property="customerName"></result>
+        </association>
+    </resultMap>
+    <select id="getOrderAndCustomerById" resultMap="orderRM">
+        SELECT o.*,
+               c.id c_id,
+               c.customer_name,
+               c.phone
+        FROM t_order o
+                 LEFT JOIN t_customer c ON c.id = o.customer_id
+        WHERE o.id = #{id}
+    </select>
+</mapper>
