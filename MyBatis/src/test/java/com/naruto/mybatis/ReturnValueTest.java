@@ -43,4 +43,10 @@ class ReturnValueTest {
 //        System.out.println(emp.getClass());
 //        System.out.println(emp.getAge());
     }
+
+    @Test
+    public void testEmp() {
+        Emp emp = empReturnValueMapper.getEmpById(2);
+        System.out.println(emp);
+    }
 }
