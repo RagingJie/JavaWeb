@@ -16,6 +16,8 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     map-underscore-to-camel-case: true # 开启驼峰命名转换
+    aggressive-lazy-loading: false  # 关闭立即加载
+    lazy-loading-enabled: true # 开启懒加载
 
 # 开启日志
 logging:
