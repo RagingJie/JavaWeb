@@ -1,5 +1,6 @@
 package com.naruto.mybatis;
 
+import com.naruto.mybatis.mapper.CustomerMapper;
 import com.naruto.mybatis.mapper.OrderCustomerStepMapper;
 import com.naruto.mybatis.model.pojo.Customer;
 import com.naruto.mybatis.model.pojo.Order;
@@ -16,6 +17,15 @@ public class StepQueryTest {
 
     @Autowired
     private OrderCustomerStepMapper orderCustomerStepMapper;
+
+    @Autowired
+    private CustomerMapper customerMapper;
+
+    @Test
+    public void testStepQuery() {
+        List<Customer> orders = customerMapper.getAllCustomerWithOrders();
+        orders.forEach(System.out::println);
+    }
 
     @Test
     public void testStepQuery1() {

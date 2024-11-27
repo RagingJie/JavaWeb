@@ -28,4 +28,8 @@
                  LEFT JOIN t_order o ON c.id = o.customer_id
         WHERE c.id = #{id}
     </select>
+    <select id="getAllCustomerWithOrders" resultMap="com.naruto.mybatis.mapper.OrderCustomerStepMapper.getCustomerStepRM">
+        select *
+        from t_customer
+    </select>
 </mapper>
