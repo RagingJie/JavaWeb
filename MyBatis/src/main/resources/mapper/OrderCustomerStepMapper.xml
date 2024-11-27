@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.naruto.mybatis.mapper.OrderCustomerStepMapper">
+
+    <!--    根据顾客id获取客户信息-->
+    <select id="getCustomerById" resultType="com.naruto.mybatis.model.pojo.Customer">
+        select *
+        from t_customer
+        where id = #{id}
+    </select>
+
+    <!--    根据客户id查询客户信息-->
+    <select id="getOrderByCustomerId" resultType="com.naruto.mybatis.model.pojo.Order">
+        select *
+        from t_order
+        where customer_id = #{cId}
+    </select>
+
+    <!--   分步查询的自定义结果集： -->
+    <resultMap id="getCustomerStepRM" type="com.naruto.mybatis.model.pojo.Customer">
+        <id column="id" property="id"></id>
+        <result column="phone" property="phone"></result>
+        <result column="customer_name" property="customerName"></result>
+
+
+        <!--    告诉MyBatis，封装 orders 属性的时候，是一个集合，
+            但是这个集合需要调用另一个 方法 进行查询；select：来指定我们要调用的另一个方法
+            column：来指定我们要调用方法时，把哪一列的值作为传递的参数，交给这个方法
+               1）、column="id"： 单传参：id传递给方法
+               2）、column="{cid=id,name=customer_name}"：多传参（属性名=列名）；
+                    cid=id：cid是属性名，它是id列的值
+                    name=customer_name：name是属性名，它是customer_name列的值
+    -->
+        <collection property="orders"
+                    select="com.naruto.mybatis.mapper.OrderCustomerStepMapper.getOrderByCustomerId"
+                    column="id">  <!-- 这里的id指的就是顾客的id -->
+            <!--    column="{cId=id,customerName=name}">  传递多个参数时-->
+        </collection>
+    </resultMap>
+    <select id="getCustomerAndOrdersStep" resultMap="getCustomerStepRM">
+        select *
+        from t_customer
+        where id = #{id}
+    </select>
+
+
+    <resultMap id="getOrderCustomerStepRM" type="com.naruto.mybatis.model.pojo.Order">
+        <id column="id" property="id"></id>
+        <result column="address" property="address"></result>
+        <result column="amount" property="amount"></result>
+        <association property="customer"
+                     select="com.naruto.mybatis.mapper.OrderCustomerStepMapper.getCustomerById"
+                     column="customer_id">
+        </association>
+    </resultMap>
+    <select id="getOrderAndCustomerStep" resultMap="getOrderCustomerStepRM">
+        select *
+        from t_order
+        where id = #{id}
+    </select>
+</mapper>
