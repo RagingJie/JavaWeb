@@ -22,4 +22,8 @@ public interface OrderCustomerStepMapper {
     // 2、分布查询：自动做两步 = 按照id查询订单 + 查询订单对应的客户
     Order getOrderAndCustomerStep(Integer id);
 
+    // 【超级分布】案例3：按照id查询订单 以及 下单的客户 以及 客户的所有订单
+    // 若是按照这个查询顺序  订单 -> 客户 -> 订单 -> 客户   这样的查询会陷入死循环，程序会报 StackOverflowError 堆栈溢出异常
+    Order getOrderByIdAndCustomerAndOtherOrderStep(Integer id);
+
 }

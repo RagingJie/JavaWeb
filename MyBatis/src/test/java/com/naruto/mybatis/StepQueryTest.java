@@ -24,7 +24,10 @@ public class StepQueryTest {
 //        List<Order> orderByCustomerId = orderCustomerStepMapper.getOrderByCustomerId(1);
 //        System.out.println(orderByCustomerId);
 
-        Order orderAndCustomerStep = orderCustomerStepMapper.getOrderAndCustomerStep(2);
-        System.out.println(orderAndCustomerStep);
+//        Order orderAndCustomerStep = orderCustomerStepMapper.getOrderAndCustomerStep(2);
+//        System.out.println(orderAndCustomerStep);
+
+        Order order = orderCustomerStepMapper.getOrderByIdAndCustomerAndOtherOrderStep(1);
+        System.out.println("order => " + order);
     }
 }

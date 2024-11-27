@@ -3,7 +3,14 @@
 <mapper namespace="com.naruto.mybatis.mapper.OrderCustomerStepMapper">
 
     <!--    根据顾客id获取客户信息-->
-    <select id="getCustomerById" resultType="com.naruto.mybatis.model.pojo.Customer">
+<!--    <select id="getCustomerById" resultType="com.naruto.mybatis.model.pojo.Customer">-->
+<!--        select *-->
+<!--        from t_customer-->
+<!--        where id = #{id}-->
+<!--    </select>-->
+
+    <!--    根据顾客id获取客户信息-->
+    <select id="getCustomerById" resultMap="getCustomerStepRM">
         select *
         from t_customer
         where id = #{id}
@@ -54,6 +61,11 @@
         </association>
     </resultMap>
     <select id="getOrderAndCustomerStep" resultMap="getOrderCustomerStepRM">
+        select *
+        from t_order
+        where id = #{id}
+    </select>
+    <select id="getOrderByIdAndCustomerAndOtherOrderStep" resultMap="getOrderCustomerStepRM">
         select *
         from t_order
         where id = #{id}
