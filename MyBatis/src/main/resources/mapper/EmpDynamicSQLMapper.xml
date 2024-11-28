@@ -41,9 +41,50 @@
         </where>
     </select>
 
+
+    <!--    <set>标签 -->
+    <!--    <update id="updateEmp">-->
+    <!--        update t_emp-->
+    <!--        <set>-->
+    <!--            <if test="empName != null">-->
+    <!--                emp_name =#{empName},-->
+    <!--            </if>-->
+    <!--            <if test="empSalary != null">-->
+    <!--                emp_salary=#{empSalary},-->
+    <!--            </if>-->
+    <!--            <if test="age != null">-->
+    <!--                age=#{age}-->
+    <!--            </if>-->
+    <!--        </set>-->
+    <!--        where id = #{id}-->
+    <!--    </update>-->
+
+
+    <!--
+         prefix: 前缀; 如何标签体中有东西，就给它们拼一个前缀
+         prefixOverrides: 前缀覆盖；标签体中最终生成的字符串，如果以指定前缀开始，就覆盖成空串
+         suffix: 后缀
+         suffixOverrides: 后缀覆盖
+    -->
+    <select id="getEmpByNameAndSalaryAndAge" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select *
+        from t_emp
+        <trim prefix="where" prefixOverrides="and|or">
+            <if test="name != null">
+                emp_name = #{name}
+            </if>
+            <if test="salary != null">
+                and emp_salary = #{salary}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </trim>
+    </select>
+
     <update id="updateEmp">
         update t_emp
-        <set>
+        <trim prefix="set" suffixOverrides=",">
             <if test="empName != null">
                 emp_name =#{empName},
             </if>
@@ -53,7 +94,8 @@
             <if test="age != null">
                 age=#{age}
             </if>
-        </set>
+        </trim>
         where id = #{id}
     </update>
+
 </mapper>
