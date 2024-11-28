@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.naruto.mybatis.mapper.EmpDynamicSQLMapper">
+    <!--    <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">-->
+    <!--        select *-->
+    <!--        from t_emp-->
+    <!--        where-->
+    <!--        <if test="name != null">-->
+    <!--            emp_name = #{name}-->
+    <!--        </if>-->
+    <!--        <if test="salary != null">-->
+    <!--            and emp_salary = #{salary}-->
+    <!--        </if>-->
+    <!--    </select>-->
+
+    <!--    第一种动态方式 , 两者null，会全部查询出来 -->
+    <!--    <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">-->
+    <!--        select *-->
+    <!--        from t_emp-->
+    <!--        where 1 = 1-->
+    <!--        <if test="name != null">-->
+    <!--            and emp_name = #{name}-->
+    <!--        </if>-->
+    <!--        <if test="salary != null">-->
+    <!--            and emp_salary = #{salary}-->
+    <!--        </if>-->
+    <!--    </select>-->
+
+    <!--    第二种方式 使用<where>标签-->
+    <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select *
+        from t_emp
+        <where>
+            <if test="name != null">
+                and emp_name = #{name}
+            </if>
+            <if test="salary != null">
+                and emp_salary = #{salary}
+            </if>
+        </where>
+    </select>
+</mapper>
