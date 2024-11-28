@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.naruto.mybatis.mapper.EmpDynamicSQLMapper">
+
     <!--    <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">-->
     <!--        select *-->
     <!--        from t_emp-->
@@ -39,4 +40,20 @@
             </if>
         </where>
     </select>
+
+    <update id="updateEmp">
+        update t_emp
+        <set>
+            <if test="empName != null">
+                emp_name =#{empName},
+            </if>
+            <if test="empSalary != null">
+                emp_salary=#{empSalary},
+            </if>
+            <if test="age != null">
+                age=#{age}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 </mapper>

@@ -11,4 +11,6 @@ import java.util.List;
 public interface EmpDynamicSQLMapper {
 
     List<Emp> getEmpByNameAndSalary(@Param("name") String name, @Param("salary") BigDecimal salary);
+
+    void updateEmp(Emp emp);
 }

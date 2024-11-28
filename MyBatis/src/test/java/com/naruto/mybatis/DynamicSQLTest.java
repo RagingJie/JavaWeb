@@ -24,4 +24,15 @@ public class DynamicSQLTest {
         System.out.println("=============================================");
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void testDynamicSQL2() {
+        Emp emp = new Emp();
+        emp.setId(6);
+//        emp.setEmpName("测试动态sql6666");
+//        emp.setAge(18);
+        emp.setEmpSalary(new BigDecimal(165.85));
+        System.out.println("=============================================");
+        empDynamicSQLMapper.updateEmp(emp);
+    }
 }
