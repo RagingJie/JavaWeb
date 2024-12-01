@@ -41,4 +41,10 @@ public class DynamicSQLTest {
         List<Emp> list = empDynamicSQLMapper.getEmpByNameAndSalaryAndAge("andy", new BigDecimal(1963.88000), 18);
         list.forEach(System.out::println);
     }
+
+    @Test
+    public void testDynamicSQL4() {
+        List<Emp> list = empDynamicSQLMapper.getEmpByNameAndSalaryWhen(null, new BigDecimal(1963.88000));
+        list.forEach(System.out::println);
+    }
 }

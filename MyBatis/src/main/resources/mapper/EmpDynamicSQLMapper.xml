@@ -81,6 +81,23 @@
             </if>
         </trim>
     </select>
+    <select id="getEmpByNameAndSalaryWhen" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select *
+        from t_emp
+        <where>
+            <choose>
+                <when test="name != null">
+                    emp_name= #{name}
+                </when>
+                <when test="salary > 3000">
+                    emp_salary = #{salary}
+                </when>
+                <otherwise>
+                    id = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
 
     <update id="updateEmp">
         update t_emp
