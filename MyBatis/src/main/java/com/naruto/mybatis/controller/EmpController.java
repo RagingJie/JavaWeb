@@ -1,5 +1,7 @@
 package com.naruto.mybatis.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.naruto.mybatis.model.pojo.Emp;
 import com.naruto.mybatis.model.result.R;
 import com.naruto.mybatis.model.vo.requestVo.AddEmpVo;
@@ -85,6 +87,14 @@ public class EmpController {
     @ExceptionHandler(value = UnsatisfiedServletRequestParameterException.class)
     public R unsatisfiedServletRequestParameterExceptionHandler(UnsatisfiedServletRequestParameterException e) {
         return R.error("员工id不能为空~");
+    }
+
+    @GetMapping("/getList/page")
+    public PageInfo<Emp> getList(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+        // 分页查询
+        PageHelper.startPage(pageNum, pageSize);
+        List<Emp> all = empService.getAll();
+        return new PageInfo<>(all);
     }
 
 }
