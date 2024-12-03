@@ -2,6 +2,7 @@ package com.naruto.mybatis;
 
 import com.naruto.mybatis.mapper.EmpDynamicSQLMapper;
 import com.naruto.mybatis.model.pojo.Emp;
+import com.naruto.mybatis.service.EmpDynamicSQLService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,24 @@ public class DynamicSQLTest {
 
     @Autowired
     private EmpDynamicSQLMapper empDynamicSQLMapper;
+    @Autowired
+    private EmpDynamicSQLService empDynamicSQLService;
+
+    /**
+     * 测试批量操作，事务回滚
+     */
+    @Test
+    public void testDynamicSQL() {
+        ArrayList<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            Emp emp = new Emp();
+            emp.setAge(3 + i);
+            emp.setEmpName("测试" + i);
+            emp.setEmpSalary(BigDecimal.valueOf(249.876));
+            emps.add(emp);
+        }
+        empDynamicSQLService.addEmps(emps);
+    }
 
     @Test
     public void testDynamicSQL1() {
