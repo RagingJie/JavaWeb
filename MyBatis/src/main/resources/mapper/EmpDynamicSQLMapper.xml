@@ -99,6 +99,26 @@
         </where>
     </select>
 
+    <!--  for(Integer id :ids)
+
+        foreach: 遍历List,Set,Map,数组
+        collection：指定要遍历的集合名
+        item：将当前遍历出的元素赋值给指定的变量
+        separator：指定在每次遍历时，元素之间拼接的分隔符
+        open：遍历开始前缀； 不开始遍历就不会有这个
+        close：遍历结束后缀
+-->
+    <select id="getEmpByIds" resultType="com.naruto.mybatis.model.pojo.Emp">
+        select * from t_emp
+        <if test="empIds != null">
+            <where>
+                <foreach collection="empIds" item="id" open="id in (" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </where>
+        </if>
+    </select>
+
     <update id="updateEmp">
         update t_emp
         <trim prefix="set" suffixOverrides=",">

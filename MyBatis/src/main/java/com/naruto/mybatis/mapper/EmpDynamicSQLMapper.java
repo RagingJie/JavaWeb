@@ -17,4 +17,7 @@ public interface EmpDynamicSQLMapper {
     void updateEmp(Emp emp);
 
     List<Emp> getEmpByNameAndSalaryWhen(@Param("name") String name, @Param("salary") BigDecimal salary);
+
+
+    List<Emp> getEmpByIds(@Param("empIds") List<Integer> ids);
 }

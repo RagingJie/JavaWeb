@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
@@ -46,5 +49,14 @@ public class DynamicSQLTest {
     public void testDynamicSQL4() {
         List<Emp> list = empDynamicSQLMapper.getEmpByNameAndSalaryWhen(null, new BigDecimal(1963.88000));
         list.forEach(System.out::println);
+    }
+
+    @Test
+    public void testDynamicSQL5() {
+        ArrayList<Integer> list1 = new ArrayList<>();
+        List<Emp> list = empDynamicSQLMapper.getEmpByIds(list1);
+        list.forEach(item -> {
+            System.out.println(item);
+        });
     }
 }
