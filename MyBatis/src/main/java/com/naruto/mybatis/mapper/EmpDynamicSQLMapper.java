@@ -18,6 +18,25 @@ public interface EmpDynamicSQLMapper {
 
     List<Emp> getEmpByNameAndSalaryWhen(@Param("name") String name, @Param("salary") BigDecimal salary);
 
-
+    /**
+     * 批量查询
+     *
+     * @param ids
+     * @return
+     */
     List<Emp> getEmpByIds(@Param("empIds") List<Integer> ids);
+
+    /**
+     * 批量插入
+     *
+     * @param emps
+     */
+    void addEmps(List<Emp> emps);
+
+    /**
+     * 批量修改
+     *
+     * @param emps
+     */
+    void updateEmps(List<Emp> emps);
 }

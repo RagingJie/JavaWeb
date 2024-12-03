@@ -119,6 +119,15 @@
         </if>
     </select>
 
+    <insert id="addEmps">
+        insert into t_emp(emp_name, age, emp_salary)
+        values
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.empName}, #{emp.age}, #{emp.empSalary})
+        </foreach>
+    </insert>
+
+
     <update id="updateEmp">
         update t_emp
         <trim prefix="set" suffixOverrides=",">
@@ -133,6 +142,25 @@
             </if>
         </trim>
         where id = #{id}
+    </update>
+    <update id="updateEmps">
+        <foreach collection="emps" item="emp" separator=";">
+            update t_emp
+            <set>
+                <if test="emp.age !=null">
+                    age = #{emp.age},
+                </if>
+                <if test="emp.empName !=null">
+                    emp_name = #{emp.empName},
+                </if>
+                <if test="emp.empSalary !=null">
+                    emp_salary = #{emp.empSalary}
+                </if>
+            </set>
+            <where>
+                id = #{emp.id}
+            </where>
+        </foreach>
     </update>
 
 </mapper>

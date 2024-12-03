@@ -8,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @SpringBootTest
@@ -58,5 +56,34 @@ public class DynamicSQLTest {
         list.forEach(item -> {
             System.out.println(item);
         });
+    }
+
+    @Test
+    public void testDynamicSQL6() {
+        ArrayList<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            Emp emp = new Emp();
+            emp.setAge(3 + i);
+            emp.setEmpName("测试" + i);
+            emp.setEmpSalary(BigDecimal.valueOf(249.876));
+            emps.add(emp);
+        }
+        empDynamicSQLMapper.addEmps(emps);
+    }
+
+
+    @Test
+    public void testDynamicSQL7() {
+        ArrayList<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Emp emp = new Emp();
+            emp.setAge(5 + i);
+            emp.setId(i + 10);
+            emp.setEmpName("王" + i);
+            emp.setEmpSalary(BigDecimal.valueOf(245.5 + i * 2));
+            emps.add(emp);
+        }
+
+        empDynamicSQLMapper.updateEmps(emps);
     }
 }

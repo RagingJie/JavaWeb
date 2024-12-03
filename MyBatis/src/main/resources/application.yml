@@ -8,7 +8,7 @@ spring:
   #  数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mybatis-example
+    url: jdbc:mysql://127.0.0.1:3306/mybatis-example?allowMultiQueries=true # allowMultiQueries开启批量操作，开启mysql8.0以上版本支持，否则会报错
     username: root
     password: 123456
 
