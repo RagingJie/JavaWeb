@@ -39,4 +39,6 @@ public interface EmpDynamicSQLMapper {
      * @param emps
      */
     void updateEmps(List<Emp> emps);
+
+    Emp getEmpById(int id);
 }

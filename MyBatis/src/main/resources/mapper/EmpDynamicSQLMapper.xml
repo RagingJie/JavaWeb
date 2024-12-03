@@ -143,6 +143,11 @@
             </where>
         </if>
     </select>
+    <select id="getEmpById" resultType="com.naruto.mybatis.model.pojo.Emp" parameterType="int">
+        select *
+        from t_emp
+        where id = #{id}
+    </select>
 
     <insert id="addEmps">
         insert into t_emp(emp_name, age, emp_salary)

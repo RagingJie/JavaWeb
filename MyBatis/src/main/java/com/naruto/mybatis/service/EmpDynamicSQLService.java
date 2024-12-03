@@ -9,4 +9,6 @@ public interface EmpDynamicSQLService {
 
     @Transactional
     void addEmps(List<Emp> emps);
+
+    void find();
 }
