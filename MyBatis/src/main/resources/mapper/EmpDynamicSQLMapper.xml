@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.naruto.mybatis.mapper.EmpDynamicSQLMapper">
 
+    <!--   myBatis的一级缓存是针对于统一事务下的缓存，所以在mybatis中，一级缓存是针对于同一个SqlSession对象的
+       事务结束后，一级缓存失效，会将数据清空，下次查询，就会重新查询，而不是从缓存中获取
+
+       二级缓存开启后，缓存是放在一个map集合中，key是statementId，value是数据
+       一级缓存的内容会放入一级缓存，当执行commit()方法时，一级缓存中的数据会提交到二级缓存中，当执行查询时，会从二级缓存中获取数据，
+       当执行commit()方法时，会将一级缓存中的数据提交到数据库中，当执行查询时，会从数据库中获取数据，当执行commit()方法时，会将一级缓存中的数据提交到数据库中，
+       当执行查询时，会从数据库中获取数据，以此类推，当执行commit()方法时，会将一级缓存中的数据提交到数据库中，当执行查询时，会从数据库中获取数据，以此类推
+
+      mybatis开启二级缓存后，查询的数据会先从二级缓存中获取，若二级缓存中没有，会查数据库中的数据，结束后，会把数据放入二级缓存中
+
+      二级缓存是将数据以数列化的方式存入缓存中的，所以相应的对象要实现【Serializable】接口
+       -->
+    <!--    <cache/>  开启二级缓存-->
+
     <!--
         sql：抽取可复用的sql片段
         include：引用sql片段，refid属性：sql片段的id

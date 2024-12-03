@@ -33,6 +33,7 @@ public class DynamicSQLTest {
             emps.add(emp);
         }
         empDynamicSQLService.addEmps(emps);
+        System.out.println("批量插入成功~~~");
     }
 
     @Test
