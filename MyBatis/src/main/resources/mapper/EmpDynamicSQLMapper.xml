@@ -2,6 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.naruto.mybatis.mapper.EmpDynamicSQLMapper">
 
+    <!--
+        sql：抽取可复用的sql片段
+        include：引用sql片段，refid属性：sql片段的id
+    -->
+
+    <!--    抽取可复用的sql片段-->
+    <sql id="column_names">
+        id,emp_name empName,age,emp_salary empSalary
+    </sql>
+
     <!--    <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">-->
     <!--        select *-->
     <!--        from t_emp-->
@@ -29,7 +39,8 @@
 
     <!--    第二种方式 使用<where>标签-->
     <select id="getEmpByNameAndSalary" resultType="com.naruto.mybatis.model.pojo.Emp">
-        select *
+        select
+        <include refid="column_names"></include>
         from t_emp
         <where>
             <if test="name != null">
