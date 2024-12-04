@@ -5,3 +5,10 @@ spring:
   application:
     name: SpringBoot
 
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mybatis-example
+    username: root
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource   # 配置文件中配置数据库连接池类型；  也可以自己定义配置类
+
