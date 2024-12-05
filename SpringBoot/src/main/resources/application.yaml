@@ -7,8 +7,12 @@ spring:
   application:
     name: SpringBoot
   profiles:
-    active: test
-    include: common
+    active: common-one
+#    include: common  # 引用其他配置文件，配置文件名必须相同
+    group:  # 配置分组（环境隔离）
+      common-one:
+        - test
+        - common
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
