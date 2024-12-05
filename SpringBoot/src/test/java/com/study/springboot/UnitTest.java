@@ -1,12 +1,18 @@
 package com.study.springboot;
 
+import com.study.springboot.service.HelloService;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j
 @SpringBootTest
 public class UnitTest {
+
+    @Autowired
+    HelloService helloService;
 
     @DisplayName("第一个单元测试")
     @Test
@@ -34,5 +40,14 @@ public class UnitTest {
     public void timeout() throws InterruptedException {
         log.info("超时测试");
         Thread.sleep(4000);
+    }
+
+    @DisplayName("断言测试")
+    @Test
+    public void test1(){
+        String result = helloService.sayHello();
+        log.info(result);
+
+        Assertions.assertEquals("Hello", result, "测试中的返回值与预期不一致");
     }
 }
