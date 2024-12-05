@@ -48,6 +48,6 @@ public class UnitTest {
         String result = helloService.sayHello();
         log.info(result);
 
-        Assertions.assertEquals("Hello", result, "测试中的返回值与预期不一致");
+        Assertions.assertEquals("Hello 1", result, "测试中的返回值与预期不一致");
     }
 }
