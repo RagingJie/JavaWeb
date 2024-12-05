@@ -34,6 +34,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+<!--            排除默认的日志框架-->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
@@ -41,6 +42,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+<!--        更换日志框架-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
