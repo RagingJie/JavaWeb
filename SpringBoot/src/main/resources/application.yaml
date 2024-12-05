@@ -8,12 +8,12 @@ spring:
     name: SpringBoot
   profiles:
     active: common-one
-#    include: common  # 引用其他配置文件，配置文件名必须相同
-    group:  # 配置分组（环境隔离）
+    #    include: common  # 引用其他配置文件，配置文件名必须相同
+    group: # 配置分组（环境隔离）
       common-one:
-        - test
+#        - test
         - common
-
+  # 数据库配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mybatis-example
@@ -22,6 +22,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource   # 配置文件中配置数据库连接池类型；  也可以自己定义配置类
   banner:
     location: classpath:banner.txt
+
+# 可观测性actuator监控，访问地址：http://localhost:8888/actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #暴露所有端点
+        include: "*"
 
 
 # SpringBoot 默认使用 slf4j + logback
