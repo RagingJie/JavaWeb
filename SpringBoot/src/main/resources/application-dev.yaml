@@ -1,0 +1,12 @@
+server:
+  port: 5555
+
+spring:
+  application:
+    name: SpringBoot-Dev
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://dev:3306
+    username: root
+    password: 123456

@@ -1,0 +1,12 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: SpringBoot-Prod
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://prod:3306
+    username: root
+    password: 123456

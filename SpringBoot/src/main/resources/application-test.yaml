@@ -1,0 +1,12 @@
+server:
+  port: 7777
+
+spring:
+  application:
+    name: SpringBoot-Test
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://test:3306
+    username: root
+    password: 123456

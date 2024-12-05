@@ -6,6 +6,9 @@ server:
 spring:
   application:
     name: SpringBoot
+  profiles:
+    active: test
+    include: common
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -42,7 +45,7 @@ logging:
       max-file-size: 1MB  # 文件大小
       max-history: 5 # 日志文件保存的最大天数
       total-size-cap: 500MB  # 总大小，日志文件被删除前，可以容纳的最大值（默认值：0B【不限制大小】）
-#      file-name-pattern: springboot-%d{yyyy-MM-dd}.log  # 日志归档的文件名格式
+      #      file-name-pattern: springboot-%d{yyyy-MM-dd}.log  # 日志归档的文件名格式
       clean-history-on-start: false  # 应用启动时，是否清理以前的日志文件，默认值：false
 
 

@@ -1,0 +1,16 @@
+# 通用配置文件
+spring:
+  application:
+    name: SpringBoot-Common
+  servlet:
+    multipart:
+      max-file-size: 15MB
+  main:
+    allow-circular-references: true  # 允许循环引用
+
+logging:
+  level:
+    root: info
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB
