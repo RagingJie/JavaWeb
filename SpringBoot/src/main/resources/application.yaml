@@ -62,8 +62,10 @@ person:
 
 # 日志配置
 logging:
+  group: # 日志分组
+    biz: com.study.springboot.controller, com.study.springboot.service  # biz自定义的分组名
+
   level:
-    root: info  # 日志输出级别\
+    root: info  # 日志输出级别
     com.study.springboot.LogTest: trace  # 指定包日志输出级别，包用全类名
-
-
+    biz: debug   # 日志分组，设置日志级别
