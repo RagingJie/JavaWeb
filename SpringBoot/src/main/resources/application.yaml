@@ -1,7 +1,8 @@
+# tomcat服务
 server:
   port: 8888
 
-
+# spring配置
 spring:
   application:
     name: SpringBoot
@@ -15,9 +16,32 @@ spring:
   banner:
     location: classpath:banner.txt
 
+# 日志配置
+logging:
+  # 日志分组
+  group:
+    biz: com.study.springboot.controller, com.study.springboot.service  # biz自定义的分组名
+  # 日志级别
+  level:
+    root: info  # 日志输出级别
+    com.study.springboot.LogTest: trace  # 指定包日志输出级别，包用全类名
+    biz: debug   # 日志分组，设置日志级别
+  # 将日志输出到指定文件
+  file:
+    name: springboot.log  # 当前项目所在的根文件夹下生成一个 指定名字的 日志文件
+  #    path: D://springbootLog # 日志文件保存路径，会生成一个spring.log的日志文件
+  # 若是name与path都配置，那么name的优先级更高，会采用name的配置
 
-
-
+  # 日志归档与切割
+  # 归档：创建一个归档文件，将当前日志文件重命名，并保存到指定位置；
+  # 切割：每个文件4MB，超过大小切割成另一个文件
+  logback:
+    rollingpolicy:
+      max-file-size: 1MB  # 文件大小
+      max-history: 5 # 日志文件保存的最大天数
+      total-size-cap: 500MB  # 总大小，日志文件被删除前，可以容纳的最大值（默认值：0B【不限制大小】）
+      file-name-pattern: springboot-%d{yyyy-MM-dd}.log  # 日志归档的文件名格式
+      clean-history-on-start: false  # 应用启动时，是否清理以前的日志文件，默认值：false
 
 
 
@@ -59,13 +83,3 @@ person:
     yellowCat:
       name: 招财猫3
       age: 5
-
-# 日志配置
-logging:
-  group: # 日志分组
-    biz: com.study.springboot.controller, com.study.springboot.service  # biz自定义的分组名
-
-  level:
-    root: info  # 日志输出级别
-    com.study.springboot.LogTest: trace  # 指定包日志输出级别，包用全类名
-    biz: debug   # 日志分组，设置日志级别
