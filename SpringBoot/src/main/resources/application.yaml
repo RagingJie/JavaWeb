@@ -1,6 +1,7 @@
 server:
   port: 8888
 
+
 spring:
   application:
     name: SpringBoot
@@ -11,4 +12,43 @@ spring:
     username: root
     password: 123456
     type: com.alibaba.druid.pool.DruidDataSource   # 配置文件中配置数据库连接池类型；  也可以自己定义配置类
+  banner:
+    location: classpath:banner.txt
+
+dog:
+  name: 泰迪
+  age: 12
+  sex: 男
+
+# yaml语法格式
+person:
+  name: 李华
+  age: 18
+  birthDay: 1999/01/01
+  like: true
+  child:
+    name: 小明
+    age: 3
+    birthDay: 2018/01/01
+    text: [ 文本4, 文本5, 文本6 ]   # 集合的两种写法，1、[属性值1, 属性值2, ...]；2、- 属性值
+  #      - 文本1
+  #      - 文本2
+  #      - 文本3
+  dogs:
+    - name: 旺财
+      age: 3
+    - name: 旺财2
+      age: 4
+    - { name: 旺财3, age: 5 }
+  cats:
+    redCat:
+      name: 招财猫
+      age: 3
+    blackCat:
+      name: 招财猫2
+      age: 4
+    yellowCat:
+      name: 招财猫3
+      age: 5
+
 

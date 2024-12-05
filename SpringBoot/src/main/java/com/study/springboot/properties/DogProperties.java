@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 // @ConfigurationProperties作用，将类的属性与配置文件中的参数绑定，实现自动注入
 @ConfigurationProperties(prefix = "dog")
-//@Component
+@Component
 @Data
 public class DogProperties {
 
