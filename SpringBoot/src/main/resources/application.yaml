@@ -11,7 +11,7 @@ spring:
     #    include: common  # 引用其他配置文件，配置文件名必须相同
     group: # 配置分组（环境隔离）
       common-one:
-#        - test
+        #        - test
         - common
   # 数据库配置
   datasource:
@@ -100,3 +100,9 @@ person:
     yellowCat:
       name: 招财猫3
       age: 5
+
+robot:
+  name: AI智能机器人
+  version: 1.0
+  age: 3
+  sex: 男
