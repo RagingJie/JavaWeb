@@ -10,6 +10,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 
 /**
@@ -26,6 +27,7 @@ import org.springframework.context.annotation.Profile;
  * 生效的配置 = 默认配置 + 激活的配置(profiles.active) +  包含的配置(profiles.include)
  */
 //@EnableConfigurationProperties(DogProperties.class)
+@EnableAsync   // 基于注解开启自动异步（多线程）
 @Slf4j
 @SpringBootApplication
 public class SpringBootStudyApplication {
